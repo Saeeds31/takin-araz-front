@@ -1,0 +1,92 @@
+@theme {
+  --font-family-regular: Yekan-Back-regular;
+  --font-family-medium: Yekan-Back-medium;
+  --font-family-semi-bold: Yekan-Back-bold;
+  --font-family-bold: Yekan-Back-heavy;
+
+  --color-primary-light: #eaedfa;
+  --color-primary-light-hover: #e0e4f7;
+  --color-primary-light-active: #bfc8ee;
+  --color-primary: #2f4cc8;
+  --color-primary-hover: #2a44b4;
+  --color-primary-active: #263da0;
+  --color-primary-dark: #233996;
+  --color-primary-dark-hover: #1c2e78;
+  --color-primary-dark-active: #15225a;
+  --color-primary-darker: #101b46;
+
+  --color-primary-light: #eaedfa;
+  --color-primary-light-hover: #e0e4f7;
+  --color-primary-light-active: #bfc8ee;
+  --color-secondary: #00b099;
+  --color-primary-hover: #2a44b4;
+  --color-primary-active: #263da0;
+  --color-primary-dark: #233996;
+  --color-primary-dark-hover: #1c2e78;
+  --color-primary-dark-active: #15225a;
+  --color-primary-darker: #101b46;
+
+  --word-tracking-tighter: -0.2em;
+  --word-tracking-tight: -0.1em;
+  --word-tracking-normal: 0em;
+  --word-tracking-wide: 0.1em;
+  --word-tracking-wider: 0.2em;
+  --word-tracking-widest: 0.3em;
+}
+
+@font-face {
+  font-family: Yekan-Back-regular;
+  src: url("../fonts/Yekan-Bakh-Regular.woff") format("woff"), url("../fonts/Yekan-Bakh-Regular.ttf") format("TrueType");
+  font-weight: 300 400;
+  font-variant: normal;
+}
+
+@font-face {
+  font-family: Yekan-Back-medium;
+  src: url("../fonts/Yekan-Bakh-Medium.woff") format("woff"), url("../fonts/Yekan-Bakh-Medium.ttf") format("TrueType");
+  font-weight: 500;
+  font-variant: normal;
+}
+
+@font-face {
+  font-family: Yekan-Back-bold;
+  src: url("../fonts/Yekan-Bakh-Bold.woff") format("woff"), url("../fonts/Yekan-Bakh-Bold.ttf") format("TrueType");
+  font-weight: 600 700;
+  font-variant: normal;
+}
+
+@font-face {
+  font-family: Yekan-Back-heavy;
+  src: url("../fonts/Yekan-Bakh-Heavy.woff") format("woff"), url("../fonts/Yekan-Bakh-Heavy.ttf") format("TrueType");
+  font-weight: 800 900;
+  font-variant: normal;
+}
+
+@utility word-tracking-* {
+  word-spacing: --value(--word-tracking- *, [ *]);
+}
+* {
+  --base-color: #660241;
+}
+.base-color {
+  color: var(--base-color);
+}
+
+.bg-base {
+  background-color: var(--base-color);
+}
+.base-bg-hover:hover {
+  transition: all 0.8s;
+  background-color: #660241;
+  color: white;
+}
+.base-back {
+  background-color: var(--base-color);
+}
+.border-b-base {
+  border-bottom: 1px solid var(--base-color);
+}
+.base-back-border {
+  border: 1px solid var(--base-color);
+  color: var(--base-color);
+}

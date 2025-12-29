@@ -1,0 +1,39 @@
+{
+  "name": "takin-arta-pergas",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.16",
+    "axios": "^1.13.0",
+    "dayjs": "^1.11.18",
+    "file-saver": "^2.0.5",
+    "jalaliday": "^3.1.1",
+    "js-cookie": "^3.0.5",
+    "jszip": "^3.10.1",
+    "pinia": "^3.0.3",
+    "swiper": "^12.0.3",
+    "tailwindcss": "^4.1.16",
+    "vee-validate": "^4.15.1",
+    "vue": "^3.5.22",
+    "vue-3-sanitize": "^0.1.4",
+    "vue-multiselect": "^3.4.0",
+    "vue-router": "^4.6.3",
+    "vue3-persian-datetime-picker": "^1.2.2",
+    "vue3-toastify": "^0.2.8",
+    "yup": "^1.7.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "vite": "^7.1.11",
+    "vite-plugin-vue-devtools": "^8.0.3"
+  }
+}
