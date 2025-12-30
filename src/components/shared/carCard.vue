@@ -13,7 +13,7 @@
         <h3 class="flex items-center justify-between w-full">
             <span>قیمت:</span>
             <span class="font-bold">
-                {{ Number(car.price).toLocaleString('fa') }} درهم
+                {{ Number(car.price).toLocaleString('fa') }} دلار
             </span>
         </h3>
         <router-link class="carBtn w-full text-center bg-base  border !text-white base-back-border rounded  px-4 py-3"

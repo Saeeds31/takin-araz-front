@@ -67,7 +67,7 @@
 
                     <h3 class="flex items-center justify-between  w-full gap-3">
                         <span>قیمت:</span>
-                        <span class="font-bold">{{ Number(car.car.price).toLocaleString('fa') }}درهم</span>
+                        <span class="font-bold">{{ Number(car.car.price).toLocaleString('fa') }}دلار</span>
                     </h3>
                     <div class="w-full flex items-center justify-between mt-6 gap-4">
                         <q class="base-color">باتوجه به نوسان قیمت بازار
