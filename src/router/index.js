@@ -33,11 +33,6 @@ const routes = [
         component: salePlan,
       },
       {
-        path: "/contact-us",
-        name: "Contactus",
-        component: Contactus,
-      },
-      {
         path: "/check-mobile",
         name: "check-mobile",
         component: checkMobile,
@@ -62,77 +57,16 @@ const routes = [
     component: Panel,
     redirect: "/panel/identity-info",
     children: [
-      {
-        path: "identity-info",
-        name: "Identity-Info",
-        component: () => import("@/components/register/IdentityInfo.vue"),
-      },
-      {
-        path: "identity-docs",
-        name: "Identity-Docs",
-        component: () => import("@/components/register/IdentityDocs.vue"),
-      },
-      {
-        path: "physical-info",
-        name: "Physical-Info",
-        component: () => import("@/components/register/PhysicalInfo.vue"),
-      },
-      {
-        path: "education-docs",
-        name: "Education-Docs",
-        component: () => import("@/components/register/EducationDocs.vue"),
-      },
-      {
-        path: "courses",
-        name: "Courses",
-        component: () => import("@/views/Courses.vue"),
-      },
-      {
-        path: "course/:id",
-        name: "Courses-Detail",
-        component: () => import("@/views/CourseDetail.vue"),
-      },
-
-      {
-        path: "exam-detail/:id",
-        name: "Exam-Detail",
-        component: () => import("@/views/Exam.vue"),
-      },
-      {
-        path: "wallet",
-        name: "Wallet",
-        component: () => import("@/views/Wallet.vue"),
-      },
-      {
-        path: "status",
-        name: "Status",
-        component: () => import("@/views/PersonStatus.vue"),
-      },
-      {
-        path: "purchased",
-        name: "Purchased",
-        component: () => import("@/views/PurchasedCourses.vue"),
-      },
-      {
-        path: "membership",
-        name: "Membership",
-        component: () => import("@/views/MembershipCard.vue"),
-      },
-      {
-        path: "contact",
-        name: "Contact",
-        component: () => import("@/views/Contact.vue"),
-      },
-      {
-        path: "receipts",
-        name: "Receipts",
-        component: () => import("@/views/Receipts.vue"),
-      },
-      {
-        path: "referral",
-        name: "Referral",
-        component: () => import("@/components/panel/Referral.vue"),
-      },
+      // {
+      //   path: "identity-info",
+      //   name: "Identity-Info",
+      //   component: () => import("@/components/register/IdentityInfo.vue"),
+      // },
+      // {
+      //   path: "referral",
+      //   name: "Referral",
+      //   component: () => import("@/components/panel/Referral.vue"),
+      // },
     ],
   },
   {

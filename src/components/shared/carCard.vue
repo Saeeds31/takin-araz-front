@@ -1,6 +1,6 @@
 <template>
     <article class="flex flex-col py-2 px-2 rounded items-center gap-4 border border-gray-600 ">
-        <img :src="$filters.resource(car.image)" class="w-full rounded" :alt="car.name">
+        <img :src="$filters.resource(car.image)" class="w-full rounded aspect-6/4 object-cover" :alt="car.name">
         <h2 class="font-bold my-3 text-right w-full">
             {{ car.name }}
         </h2>

@@ -2,9 +2,7 @@
     <IndexLayout>
         <RouterView></RouterView>
     </IndexLayout>
-    <a target="_blank" href="https://wa.me/+989039431683" class="fixed right-4 bottom-4">
-        <IconWhatsapp />
-    </a>
+
     <BaseLoading />
 </template>
 

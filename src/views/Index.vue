@@ -1,11 +1,11 @@
 <template>
     <TheHeader />
     <RouterView></RouterView>
-    <!-- <TheFooter/> -->
+    <TheFooter/>
 </template>
 
 <script setup>
-// import TheFooter from '@/components/home/TheFooter.vue';
+import TheFooter from '@/components/home/TheFooter.vue';
 import TheHeader from '@/components/home/TheHeader.vue';
 import { ref } from 'vue'
 

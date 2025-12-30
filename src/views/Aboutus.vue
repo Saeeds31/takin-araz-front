@@ -1,17 +1,20 @@
 <template>
-    <div>
-        <p class="text-sm text-gray-400">درباره ما</p>
+  <div class="grid grid-cols-1 items-center w-[90%] mx-auto">
+    <h2 class="font-bold text-2xl">درباره ما</h2>
+    <div class="mt-5 mb-5 whitespace-pre-line" v-if="settings">
+      {{ settings?.about_us_text_page }}
     </div>
+  </div>
   <Aboutus />
-  <WhatWeDo />
-  <Team />
 </template>
 
 <script setup>
 import Aboutus from "@/components/home/Aboutus.vue";
-import Team from "@/components/home/Team.vue";
-import WhatWeDo from "@/components/home/WhatWeDo.vue";
-import { ref } from "vue";
+import { useProfile } from '@/stores/modules/profile';
+import { computed } from "vue";
+const store = useProfile();
+const settings = computed(() => store.getSettings);
+
 </script>
 
 <style scoped></style>
