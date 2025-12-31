@@ -1,7 +1,7 @@
 <template>
   <div class="grid lg:grid-cols-[2fr_3fr] grid-cols-1 items-center w-[90%] mx-auto" v-if="settings">
     <div class="flex flex-col items-start gap-2">
-      <h2 class="font-bold">پیش فروش تکین آراز </h2>
+      <h2 class="font-bold">پیش فروش تکین آراز پرگاس </h2>
       <h3 class="font-bold text-black">
         {{ settings?.about_home }}
       </h3>

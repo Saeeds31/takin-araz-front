@@ -1,11 +1,12 @@
 <template>
-  <footer>
+  <footer v-if="settings">
     <div class="mt-20 px-6 bg-[#42043f] text-white">
       <div class="flex justify-between w-11/12 max-w-[1400px] mx-auto flex-wrap py-12">
         <div class="mb-6">
           <Branding />
           <p>
-            با اطمینان خاطر از برترین برندها و کمپانی های دنیا سفارش خود را تحویل خواهید گرفت ؛ تکین آراز پیشرو در عرضه
+            با اطمینان خاطر از برترین برندها و کمپانی های دنیا سفارش خود را تحویل خواهید گرفت ؛ تکین آراز پرگاس, پیشرو
+            در عرضه
             خودروهای خارجی
           </p>
         </div>
@@ -14,12 +15,15 @@
           <div class="flex items-center gap-2">
             <IconLocation color="white" />
             <span class="font-family-regular text-white">
-              مازندران ساری بلوار خزر دریای 17
+              {{ settings.address_footer }}
+
             </span>
           </div>
           <div class="flex items-center mt-4 gap-2 mb-2">
-            <IconPhone color="white" />
-            <span class="font-family-regular text-white" dir="ltr">09112490613</span>
+            <IconCheck color="white" />
+            <span class="font-family-regular text-white" dir="ltr">
+              {{ settings.postal_code }}
+            </span>
           </div>
         </div>
 
@@ -49,11 +53,13 @@
 
 <script setup>
 import Branding from "@/common/components/Branding.vue";
+import IconCheck from "@/common/icons/IconCheck.vue";
 import IconLocation from "@/common/icons/IconLocation.vue";
-import IconMobile from "@/common/icons/IconMobile.vue";
-import IconPhone from "@/common/icons/IconPhone.vue";
 import { useMenu } from "@/stores/modules/menu";
 import { computed, ref } from "vue";
+import { useProfile } from '@/stores/modules/profile';
+const store1 = useProfile()
+const settings = computed(() => store1.getSettings);
 
 const store = useMenu();
 const menus = computed(() => store.menus);
