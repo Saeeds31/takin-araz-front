@@ -16,13 +16,13 @@
                 {{ Number(car.price).toLocaleString('fa') }} دلار
             </span>
         </h3>
-        <router-link class="carBtn w-full text-center bg-base  border !text-white base-back-border rounded  px-4 py-3"
+        <router-link class="carBtn w-full text-center bg-base  border !text-white base-back-border rounded  md:px-4 md:py-3 px-2 py-1"
             :to="`/cars/${car.id}`">
             مشاهده مشخصات
         </router-link>
 
         <a @click="saleCar(car.id)" v-if="salemode"
-            class="carBtn w-full text-center bg-base  border !text-white base-back-border rounded  px-4 py-3">
+            class="carBtn w-full text-center bg-base  border !text-white base-back-border rounded  md:px-4 md:py-3 px-2 py-1">
             ثبت درخواست
         </a>
     </article>

@@ -80,8 +80,8 @@
                 </div>
                 <img class="w-full  rounded-xl" :src="$filters.resource(car.car.image)" />
             </section>
-            <section v-if="car.car.images && car.car.images.length" class="w-full">
-                <h3>سایر تصاویر</h3>
+            <section v-if="car.car.images && car.car.images.length" class="w-full mt-8">
+                <h3 class="font-bold text-2xl mb-4">سایر تصاویر</h3>
                 <Swiper :modules="modules" :autoplay="autoplay" :loop="true" :centered-slides="true" :grab-cursor="true"
                     :speed="700" :slides-per-view="2.4" :space-between="0" :effect="'coverflow'"
                     :coverflow-effect="coverflowConfig" :pagination="{ clickable: true }"
@@ -93,7 +93,7 @@
                     </SwiperSlide>
                 </Swiper>
             </section>
-            <div class="mt-6">
+            <div class="mt-6 whitespace-pre-line">
                 {{ car.car.description }}
             </div>
         </section>

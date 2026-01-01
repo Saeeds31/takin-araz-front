@@ -16,8 +16,11 @@
             </p>
         </section>
         <section id="mainHeader" class="flex items-center justify-between px-[5%] py-3">
+            <button class="block md:hidden" @click="openedMobile=true">
+                <IconMenu />
+            </button>
             <Branding />
-            <Menus :list="menus" />
+            <Menus @closeMenu="openedMobile=false" :openedMobile="openedMobile" :list="menus" />
             <router-link v-if="!user" id="loginBtn" class="rounded flex items-center gap-3 px-2 py-1.5"
                 to="/check-mobile">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -54,6 +57,7 @@ import Menus from '@/common/components/Menus.vue';
 import { useProfile } from '@/stores/modules/profile';
 import { useMenu } from '@/stores/modules/menu.js';
 import { computed, onMounted, ref } from 'vue'
+import IconMenu from '@/common/icons/IconMenu.vue';
 const store = useProfile();
 const store1 = useMenu();
 const menus = computed(() => store1.menus);
@@ -61,7 +65,7 @@ const settings = computed(() => store.getSettings);
 const user = computed(() => store.user);
 store1.getMenuFromServer()
 store.fetchProfileInfo();
-
+let openedMobile=ref(false);
 </script>
 
 <style scoped>

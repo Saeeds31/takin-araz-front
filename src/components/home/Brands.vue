@@ -1,6 +1,6 @@
 <template>
   <section v-for="(brand, index) in homeBrands" :key="brand.title">
-    <div class="grid grid-cols-[2fr_3fr] gap-8  items-center w-[70%] mx-auto mt-6 "
+    <div class="grid lg:grid-cols-[2fr_3fr] grid-cols-1 gap-8  items-center w-[70%] mx-auto mt-6 "
       :dir="index % 2 == 0 ? 'rtl' : 'ltr'">
       <img class="w-full" :src="baseFileUrl(brand.image)" :alt="brand.title">
       <div class="w-full flex flex-col  gap-2" :class="index % 2 == 0 ? 'items-start' : 'items-end'">
