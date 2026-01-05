@@ -121,8 +121,8 @@
 
 <script setup>
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { EffectCoverflow, Pagination,Autoplay } from "swiper/modules";
-import { computed, ref } from "vue"
+import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
+import { computed, onMounted, ref } from "vue"
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import BaseButton from '@/common/UI/BaseButton.vue';
@@ -131,6 +131,7 @@ import { useCar } from '@/stores/modules/car';
 import { useRoute } from "vue-router";
 import router from "@/router";
 import { toast } from "vue3-toastify";
+import { useHead } from '@vueuse/head'
 import { getCurrentInstance } from 'vue'
 let autoplay = ref(
     {
@@ -142,7 +143,7 @@ const $axios = instance.appContext.config.globalProperties.$axios;
 const store = useCar();
 const route = useRoute();
 const car = computed(() => store.car);
-const modules = [EffectCoverflow, Pagination,Autoplay];
+const modules = [EffectCoverflow, Pagination, Autoplay];
 const coverflowConfig = {
     rotate: 0,
     stretch: 0,
@@ -151,7 +152,6 @@ const coverflowConfig = {
     slideShadows: false,
 };
 let loader = ref(false);
-store.getCarDetailFromServer(route.params.id);
 async function gotoLink(id) {
     loader.value = true;
     try {
@@ -169,7 +169,40 @@ async function gotoLink(id) {
     }
     // 
 }
-
+onMounted(async () => {
+    await store.getCarDetailFromServer(route.params.id);
+    useHead({
+        title: `${car.value?.car.name} | جزئیات خودرو | تکین آراز پرگاس`,
+        meta: [
+            {
+                name: 'description',
+                content: car.value?.car.description || 'اطلاعات کامل خودرو وارداتی در مازندران'
+            },
+            {
+                property: 'og:title',
+                content: car.value?.car.name
+            },
+            {
+                property: 'og:description',
+                content: car.value?.car.description
+            },
+            {
+                property: 'og:image',
+                content: car.value ? `https://api.car-tap.ir/public/uploads/${car.value.car.image}` : ""
+            },
+            {
+                property: 'og:url',
+                content: `https://car-tap.ir/cars/${car.value?.car.id}`
+            }
+        ],
+        link: [
+            {
+                rel: 'canonical',
+                href: `https://car-tap.ir/cars/${car.value?.car.id}`
+            }
+        ]
+    })
+})
 </script>
 <style>
 /* From Uiverse.io by mobinkakei */

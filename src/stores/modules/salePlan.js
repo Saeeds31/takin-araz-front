@@ -20,6 +20,7 @@ export const useSalePlan = defineStore("salePlan", {
             router.push("/home");
           }, 5000);
         }
+        return true;
       } catch (error) {
         throw error;
       }

@@ -13,6 +13,32 @@
 import CheckMobile from '@/components/auth/CheckMobile.vue';
 import { useSlider } from '@/stores/modules/slider';
 import { onMounted, computed } from 'vue';
+import { useHead } from '@vueuse/head';
+useHead({
+    title: 'ثبت‌نام کاربر | تکین آراز پرگاس',
+    meta: [
+        {
+            name: 'description',
+            content: 'ثبت‌نام کاربران در سامانه تکین آراز پرگاس برای دسترسی به خدمات ثبت‌نام و تحویل خودروهای خارجی در استان مازندران.'
+        }
+        ,
+        {
+            name: 'keywords',
+            content: 'ثبت نام کاربر, تکین آراز پرگاس, سامانه خودرو خارجی, واردات خودرو, تحویل خودرو, مازندران'
+        },
+        { property: 'og:title', content: 'ثبت‌نام کاربر | تکین آراز پرگاس' },
+        {
+            property: 'og:description',
+            content: 'با ثبت‌نام در سامانه تکین آراز پرگاس، به خدمات ثبت‌نام و تحویل خودروهای خارجی دسترسی پیدا کنید.'
+        },
+        { property: 'og:image', content: 'https://car-tap.ir/logo.png' },
+
+        { property: 'og:url', content: 'https://car-tap.ir/check-mobile' }
+    ],
+    link: [
+        { rel: 'canonical', href: 'https://car-tap.ir/check-mobile' }
+    ]
+})
 const store = useSlider();
 onMounted(() => {
     store.getSliderFromServer();

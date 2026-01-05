@@ -162,6 +162,7 @@ import router from "@/router";
 import { getCurrentInstance } from 'vue'
 import { useProfile } from '@/stores/modules/profile';
 import { toast } from "vue3-toastify";
+import { useHead } from '@vueuse/head'
 const instance = getCurrentInstance()
 const $axios = instance.appContext.config.globalProperties.$axios;
 const store = useSalePlan();
@@ -198,7 +199,40 @@ async function register() {
         loader.value = false;
     }
 }
-onMounted(() => {
+onMounted(async () => {
+
+    await store.getSaleDetailFromServer(route.params.id);
+    useHead({
+        title: `${salePlan.value?.title} | طرح فروش خودرو | تکین آراز پرگاس`,
+        meta: [
+            {
+                name: 'description',
+                content: salePlan.value?.title || 'جزئیات طرح فروش خودروهای خارجی در مازندران'
+            },
+            {
+                property: 'og:title',
+                content: salePlan.value?.title
+            },
+            {
+                property: 'og:description',
+                content: salePlan.value?.title
+            },
+            {
+                property: 'og:image',
+                content: "https://car-tap.ir/logo.png"
+            },
+            {
+                property: 'og:url',
+                content: `https://example.com/sales-plan/${salePlan.value?.id}`
+            }
+        ],
+        link: [
+            {
+                rel: 'canonical',
+                href: `https://example.com/sales-plan/${salePlan.value?.id}`
+            }
+        ]
+    })
     if (route.query.car_id) {
         handlerId(route.query.car_id)
     }
@@ -217,7 +251,6 @@ const coverflowConfig = {
     slideShadows: false,
 };
 let loader = ref(false);
-store.getSaleDetailFromServer(route.params.id);
 async function gotoLink(id) {
     loader.value = true;
     try {

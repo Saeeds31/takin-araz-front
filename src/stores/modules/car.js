@@ -12,6 +12,7 @@ export const useCar = defineStore("car", {
       try {
         const { data } = await this.$axios.get(`/cars/${id}`);
         this.car = data.data;
+        return true;
       } catch (error) {
         throw error;
       }
