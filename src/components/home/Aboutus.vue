@@ -19,13 +19,15 @@
 
     </div>
     <div class="flex items-center gap-2">
-      <img class="w-[50%]" src="@/assets/images/home/about2.png" alt="">
-      <img class="w-[50%]" src="@/assets/images/home/about1.png" alt="">
+      <img class="w-[50%]" v-lazy="about1Image" alt="">
+      <img class="w-[50%]" v-lazy="about2Image" alt="">
     </div>
   </div>
 </template>
 
 <script setup>
+import about1Image from '@/assets/images/home/about2.png'
+import about2Image from '@/assets/images/home/about1.png'
 import BaseButton from '@/common/UI/BaseButton.vue';
 import { computed, onMounted, ref } from "vue";
 import { useBanner } from '@/stores/modules/banner';

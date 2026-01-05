@@ -3,7 +3,7 @@
         :modules="modules">
         <swiper-slide v-for="(slide, index) in filtered" :key="index">
             <div class="relative">
-                <img class="w-full aspect-[4/5] lg:aspect-[2.50/1] rounded-xl" :src="$filters.resource(slide.image)"
+                <img class="w-full aspect-[4/5] lg:aspect-[2.50/1] rounded-xl"  v-lazy="$filters.resource(slide.image)"
                     alt="">
                 <div class="absolute start-0  top-4 px-4 pb-4">
                     <div class=" min-h-24 lg:min-h-36 py-4 rounded-xl px-4 flex items-start justify-center flex-col">

@@ -26,6 +26,7 @@
     "vee-validate": "^4.15.1",
     "vue": "^3.5.22",
     "vue-3-sanitize": "^0.1.4",
+    "vue-lazyload": "^3.0.0",
     "vue-multiselect": "^3.4.0",
     "vue-router": "^4.6.3",
     "vue3-persian-datetime-picker": "^1.2.2",

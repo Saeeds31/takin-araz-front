@@ -1,6 +1,6 @@
 <template>
     <article class="flex flex-col py-2 px-2 rounded items-center gap-4 border border-gray-600 ">
-        <img :src="$filters.resource(car.image)" class="w-full rounded aspect-6/4 object-cover" :alt="car.name">
+        <img v-lazy="$filters.resource(car.image)" class="w-full rounded aspect-6/4 object-cover" :alt="car.name">
         <h2 class="font-bold my-3 text-right w-full">
             {{ car.name }}
         </h2>
@@ -16,7 +16,8 @@
                 {{ Number(car.price).toLocaleString('fa') }} دلار
             </span>
         </h3>
-        <router-link class="carBtn w-full text-center bg-base  border !text-white base-back-border rounded  md:px-4 md:py-3 px-2 py-1"
+        <router-link
+            class="carBtn w-full text-center bg-base  border !text-white base-back-border rounded  md:px-4 md:py-3 px-2 py-1"
             :to="`/cars/${car.id}`">
             مشاهده مشخصات
         </router-link>

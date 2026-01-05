@@ -1,52 +1,41 @@
 import { createRouter, createWebHistory } from "vue-router";
-import NotFound from "@/views/NotFound.vue";
-import Panel from "@/views/Panel.vue";
-import Register from "@/views/Register.vue";
-import carDetail from "@/views/carDetail.vue";
-import home from "@/views/home.vue";
-import Contactus from "@/views/Contactus.vue";
-import Aboutus from "@/views/Aboutus.vue";
-import Index from "@/views/Index.vue";
-import checkMobile from "@/views/CheckMobile.vue";
-import VerifyCode from "@/views/VerifyCode.vue";
-import salePlan from "@/views/salePlan.vue";
 const routes = [
   {
     path: "/",
     name: "Index",
-    component: Index,
+    component: () => import('@/views/Index.vue'),
     children: [
       {
         path: "",
         name: "home",
-        component: home,
+        component: import('@/views/home.vue'),
       },
 
       {
         path: "/cars/:id",
         name: "car-detail",
-        component: carDetail,
+        component: import('@/views/carDetail.vue'),
       },
       {
         path: "/sales-plan/:id",
         name: "sales-plan-detail",
-        component: salePlan,
+        component: import('@/views/salePlan.vue'),
       },
       {
         path: "/check-mobile",
         name: "check-mobile",
-        component: checkMobile,
+        component: import('@/views/CheckMobile.vue'),
       },
       {
         path: "/verify-code",
         name: "Verify",
-        component: VerifyCode,
+        component: import('@/views/VerifyCode.vue'),
       },
 
       {
         path: "/about-us",
         name: "Aboutus",
-        component: Aboutus,
+        component: import('@/views/Aboutus.vue'),
       },
     ],
   },
@@ -54,25 +43,15 @@ const routes = [
   {
     path: "/user-panel",
     name: "Panel",
-    component: Panel,
+    component: import('@/views/Panel.vue'),
     redirect: "/panel/identity-info",
     children: [
-      // {
-      //   path: "identity-info",
-      //   name: "Identity-Info",
-      //   component: () => import("@/components/register/IdentityInfo.vue"),
-      // },
-      // {
-      //   path: "referral",
-      //   name: "Referral",
-      //   component: () => import("@/components/panel/Referral.vue"),
-      // },
     ],
   },
   {
     path: "/register",
     name: "Register",
-    component: Register,
+    component: import('@/views/Register.vue'),
     redirect: "/register/step/1",
     children: [
       {
@@ -86,7 +65,7 @@ const routes = [
   {
     path: "/:pathMatch(.*)*",
     name: "NotFound",
-    component: NotFound,
+    component: import('@/views/NotFound.vue'),
   },
 ];
 

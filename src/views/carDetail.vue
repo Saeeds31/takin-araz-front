@@ -78,7 +78,7 @@
                         </BaseButton>
                     </div>
                 </div>
-                <img class="w-full  rounded-xl" :src="$filters.resource(car.car.image)" />
+                <img class="w-full  rounded-xl" v-lazy="$filters.resource(car.car.image)" />
             </section>
             <section v-if="car.car.images && car.car.images.length" class="w-full mt-8">
                 <h3 class="font-bold text-2xl mb-4">سایر تصاویر</h3>
@@ -88,7 +88,7 @@
                     class="w-[80%] mx-auto  custom-swiper  mt-0 xl:mt-12">
                     <SwiperSlide v-for="(slide, i) in car.car.images" :key="i" class="product-slide">
                         <div class="slide-item">
-                            <img class="w-full" :src="$filters.resource(slide.path)" />
+                            <img class="w-full" v-lazy="$filters.resource(slide.path)" />
                         </div>
                     </SwiperSlide>
                 </Swiper>
@@ -199,6 +199,31 @@ onMounted(async () => {
             {
                 rel: 'canonical',
                 href: `https://car-tap.ir/cars/${car.value?.car.id}`
+            }
+        ],
+        script: [
+            {
+                type: 'application/ld+json',
+                children: JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Product",
+                    "name": car.value?.car.name,
+                    "image": car.value ? `https://api.car-tap.ir/public/uploads/${car.value.car.image}` : "",
+                    "description": car.value?.car.description,
+                    "sku": `CAR-${car.value?.car.id}`,
+                    "brand": {
+                        "@type": "Brand",
+                        "name": car.value?.car.brand.title
+                    },
+                    "offers": {
+                        "@type": "Offer",
+                        "url": `https://car-tap.ir/cars/${car.value?.car.id}`,
+                        "priceCurrency": "USD",
+                        "price": car.value?.car.price,
+                        "availability": "https://schema.org/InStock",
+                        "itemCondition": "https://schema.org/NewCondition"
+                    }
+                })
             }
         ]
     })

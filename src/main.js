@@ -9,7 +9,7 @@ import Vue3PersianDatetimePicker from "vue3-persian-datetime-picker";
 import * as axios from "@/common/api";
 import Vue3Toasity, { toast } from "vue3-toastify";
 import Vue3Sanitize from "vue-3-sanitize";
-
+import VueLazyLoad from "vue-lazyload";
 import "@/common/utils/locale.js";
 
 // Css
@@ -29,4 +29,5 @@ app.component("DatePicker", Vue3PersianDatetimePicker);
 
 app.use(router).use(pinia).use(Vue3Toasity, { autoClose: 3000, position: toast.POSITION.TOP_LEFT }).use(Vue3Sanitize);
 app.use(head);
+app.use(VueLazyLoad);
 app.mount("#app");
