@@ -1,6 +1,7 @@
 <template>
     <header class="w-screen">
-        <section v-if="settings" id="topBar" class="flex   items-center lg:justify-between justify-center px-[5%] py-4 text-white">
+        <section v-if="settings" id="topBar"
+            class="flex   items-center lg:justify-between justify-center px-[5%] py-4 text-white">
             <p class="hidden lg:block">
                 {{ settings.header_text_1 }}
             </p>
@@ -16,11 +17,11 @@
             </p>
         </section>
         <section id="mainHeader" class="flex items-center justify-between px-[5%] py-3">
-            <button class="block md:hidden" @click="openedMobile=true">
+            <button class="block md:hidden" @click="openedMobile = true">
                 <IconMenu />
             </button>
             <Branding />
-            <Menus @closeMenu="openedMobile=false" :openedMobile="openedMobile" :list="menus" />
+            <Menus @closeMenu="openedMobile = false" :openedMobile="openedMobile" :list="menus" />
             <router-link v-if="!user" id="loginBtn" class="rounded flex items-center gap-3 px-2 py-1.5"
                 to="/check-mobile">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -64,8 +65,12 @@ const menus = computed(() => store1.menus);
 const settings = computed(() => store.getSettings);
 const user = computed(() => store.user);
 store1.getMenuFromServer()
-store.fetchProfileInfo();
-let openedMobile=ref(false);
+try {
+    store.fetchProfileInfo();
+} catch (error) {
+    console.log(error);
+}
+let openedMobile = ref(false);
 </script>
 
 <style scoped>
