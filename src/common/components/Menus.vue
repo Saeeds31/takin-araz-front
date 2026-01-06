@@ -1,6 +1,6 @@
 <template>
     <nav :class="{ opened: openedMobile }" id="mainMenu">
-        <button class="fixed left-5 top-4 z-[1000]" @click="CloseMenu()">
+        <button class="block md:hidden fixed left-5 top-4 z-[1000]" @click="CloseMenu()">
             <IconClose color="white" />
         </button>
         <ul class="flex items-center gap-4">
