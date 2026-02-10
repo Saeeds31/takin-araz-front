@@ -1,5 +1,5 @@
 <template>
-    <header class="w-screen">
+    <header id="header" class="w-screen">
         <section v-if="settings" id="topBar"
             class="flex   items-center lg:justify-between justify-center px-[5%] py-4 text-white">
             <p class="hidden lg:block">

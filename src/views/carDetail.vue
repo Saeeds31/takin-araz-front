@@ -12,17 +12,7 @@
                     </path>
                 </svg>
             </li>
-            <li class="flex items-center gap-2">
-                <router-link to="#">
-                    خودروها
-                </router-link>
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
-                    role="img" class="iconify iconify--bxi bxi text-neutral-40 dark:text-neutral-60" width="1"
-                    height="1" viewBox="0 0 24 24" style="font-size: 1rem; width: 1rem; height: 1rem;">
-                    <path d="M15.71,7.41l-4.59,4.59,4.59,4.59-1.41,1.41-6-6,6-6,1.41,1.41Z" fill="currentColor">
-                    </path>
-                </svg>
-            </li>
+
 
             <li class="flex items-center gap-2">
                 <router-link class="flex items-center gap-1" to="#">
@@ -48,8 +38,8 @@
 
         </ul>
     </nav>
-    <main class="grid lg:grid-cols-[2fr_1fr] grid-cols-1 gap-4 items-start w-screen px-[5%] mt-8" v-if="car">
-        <section>
+    <main class="grid w-screen lg:grid-cols-[2fr_1fr] grid-cols-1 gap-4 items-start  px-[5%] mt-8" v-if="car">
+        <section class="w-full overflow-hidden">
             <section class="w-full items-center mx-auto grid lg:grid-cols-2 grid-cols-1 gap-6 ">
                 <div class="flex flex-col items-start gap-3  px-6 py-4 rounded-xl">
                     <h1 class="font-bold text-3xl pb-3 border-b w-full border-b-base">
@@ -69,7 +59,7 @@
                         <span>قیمت:</span>
                         <span class="font-bold">{{ Number(car.car.price).toLocaleString('fa') }}دلار</span>
                     </h3>
-                    <div class="w-full flex items-center justify-between mt-6 gap-4">
+                    <div class="w-full flex lg:flex-row flex-col items-center justify-between mt-6 gap-4">
                         <q class="base-color">باتوجه به نوسان قیمت بازار
                             <br>
                             ارقام تقریبی وارد شده است</q>
@@ -80,15 +70,30 @@
                 </div>
                 <img class="w-full  rounded-xl" v-lazy="$filters.resource(car.car.image)" />
             </section>
-            <section v-if="car.car.images && car.car.images.length" class="w-full mt-8">
-                <h3 class="font-bold text-2xl mb-4">سایر تصاویر</h3>
-                <Swiper :modules="modules" :autoplay="autoplay" :loop="true" :centered-slides="true" :grab-cursor="true"
-                    :speed="700" :slides-per-view="2.4" :space-between="0" :effect="'coverflow'"
-                    :coverflow-effect="coverflowConfig" :pagination="{ clickable: true }"
-                    class="w-[80%] mx-auto  custom-swiper  mt-0 xl:mt-12">
+            <section v-if="car.car.images && car.car.images.length" class="w-full overflow-hidden mt-8">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-2xl mb-4">سایر تصاویر</h3>
+                    <div class="flex items-center gap-4">
+                        <button @click="next" class="
+             size-8 rounded-full  bg-neutral-200/80 flex items-center justify-center 
+            base-back hover:text-white transition-colors duration-150
+            ">
+                            <IconArrowRight :color="'white'" />
+                        </button>
+                        <button @click="prev" class="
+             size-8 rounded-full  bg-neutral-200/80 flex items-center justify-center 
+            base-back hover:text-white transition-colors duration-150
+            ">
+                            <IconArrowLeft :color="'white'" />
+                        </button>
+                    </div>
+                </div>
+                <Swiper :modules="modules" @swiper="onSwiper" :autoplay="false" :loop="true" :speed="700"
+                    :slides-per-view="1" :space-between="0" :effect="'fade'" :pagination="{ clickable: true }"
+                    class="w-full mx-auto  custom-swiper  mt-0 xl:mt-12">
                     <SwiperSlide v-for="(slide, i) in car.car.images" :key="i" class="product-slide">
-                        <div class="slide-item">
-                            <img class="w-full" v-lazy="$filters.resource(slide.path)" />
+                        <div class="slide-item w-[99%]">
+                            <img class="w-[99%]" v-lazy="$filters.resource(slide.path)" />
                         </div>
                     </SwiperSlide>
                 </Swiper>
@@ -124,6 +129,8 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 import { computed, onMounted, ref } from "vue"
 import "swiper/css";
+import IconArrowLeft from '@/common/icons/IconArrowLeft.vue';
+import IconArrowRight from '@/common/icons/IconArrowRight.vue';
 import "swiper/css/effect-coverflow";
 import BaseButton from '@/common/UI/BaseButton.vue';
 import "swiper/css/pagination";
@@ -151,7 +158,18 @@ const coverflowConfig = {
     modifier: 1,
     slideShadows: false,
 };
+const swiperInstance = ref(null);
 let loader = ref(false);
+const onSwiper = (instance) => {
+    swiperInstance.value = instance;
+}
+
+const next = () => {
+    swiperInstance.value.slideNext();
+}
+const prev = () => {
+    swiperInstance.value.slidePrev();
+}
 async function gotoLink(id) {
     loader.value = true;
     try {

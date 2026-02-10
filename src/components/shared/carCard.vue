@@ -1,7 +1,7 @@
 <template>
     <article class="flex flex-col py-2 px-2 rounded items-center gap-4 border border-gray-600 ">
         <img v-lazy="$filters.resource(car.image)" class="w-full rounded aspect-6/4 object-cover" :alt="car.name">
-        <h2 class="font-bold my-3 text-right w-full">
+        <h2 class="font-bold my-3 text-right w-full min-h-[50px]">
             {{ car.name }}
         </h2>
         <h4 class="flex items-center justify-between w-full">

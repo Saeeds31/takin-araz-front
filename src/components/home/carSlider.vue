@@ -22,10 +22,10 @@
                 </button>
             </div>
         </div>
-        <swiper class="my-4" @swiper="onSwiper" :autoplay="true" :loop="true" :slides-per-view="4" :space-between="20"
+        <swiper class="my-4" @swiper="onSwiper" :autoplay="false" :loop="true" :slides-per-view="4" :space-between="20"
             :modules="modules" :breakpoints="{
                 0: {
-                    slidesPerView: 2,
+                    slidesPerView: 1.2,
                     spaceBetween: 10
                 },
                 768: {
