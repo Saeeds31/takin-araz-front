@@ -9,8 +9,12 @@
         {{ settings?.about_text }}
       </p>
       <div class="flex items-center gap-2">
-        <BaseButton to="#" class=" base-back">
-          خرید خودرو
+        <BaseButton @click="gotoDownload()" class=" base-back">
+          <IconPdf />
+          <span>
+            دریافت قیمت های بروز خودرو
+
+          </span>
         </BaseButton>
         <BaseButton to="#" class=" base-back-border bg-transparent base-color">
           اطلاعیه ها
@@ -32,9 +36,13 @@ import BaseButton from '@/common/UI/BaseButton.vue';
 import { computed, onMounted, ref } from "vue";
 import { useBanner } from '@/stores/modules/banner';
 import { useProfile } from '@/stores/modules/profile';
+import IconPdf from '@/common/icons/IconPdf.vue';
 const store = useProfile();
 const settings = computed(() => store.getSettings);
-
+function gotoDownload() {
+  if (settings.value && settings.value.car_prices)
+    window.open('https://api.car-tap.ir/public/uploads/' + settings.value.car_prices, '_blank')
+}
 </script>
 
 <style scoped></style>
