@@ -3,4 +3,4 @@ Disallow: /admin/
 Disallow: /test/
 Allow: /
 
-Sitemap: https://car-tap.ir/sitemap.xml
+Sitemap: https://tap-car.ir/sitemap.xml

@@ -31,12 +31,12 @@ useHead({
             property: 'og:description',
             content: 'با ثبت‌نام در سامانه تکین آراز پرگاس، به خدمات ثبت‌نام و تحویل خودروهای خارجی دسترسی پیدا کنید.'
         },
-        { property: 'og:image', content: 'https://car-tap.ir/logo.png' },
+        { property: 'og:image', content: 'https://tap-car.ir/logo.png' },
 
-        { property: 'og:url', content: 'https://car-tap.ir/check-mobile' }
+        { property: 'og:url', content: 'https://tap-car.ir/check-mobile' }
     ],
     link: [
-        { rel: 'canonical', href: 'https://car-tap.ir/check-mobile' }
+        { rel: 'canonical', href: 'https://tap-car.ir/check-mobile' }
     ]
 })
 const store = useSlider();

@@ -206,17 +206,17 @@ onMounted(async () => {
             },
             {
                 property: 'og:image',
-                content: car.value ? `https://api.car-tap.ir/public/uploads/${car.value.car.image}` : ""
+                content: car.value ? `https://api.tap-car.ir/public/uploads/${car.value.car.image}` : ""
             },
             {
                 property: 'og:url',
-                content: `https://car-tap.ir/cars/${car.value?.car.id}`
+                content: `https://tap-car.ir/cars/${car.value?.car.id}`
             }
         ],
         link: [
             {
                 rel: 'canonical',
-                href: `https://car-tap.ir/cars/${car.value?.car.id}`
+                href: `https://tap-car.ir/cars/${car.value?.car.id}`
             }
         ],
         script: [
@@ -226,7 +226,7 @@ onMounted(async () => {
                     "@context": "https://schema.org",
                     "@type": "Product",
                     "name": car.value?.car.name,
-                    "image": car.value ? `https://api.car-tap.ir/public/uploads/${car.value.car.image}` : "",
+                    "image": car.value ? `https://api.tap-car.ir/public/uploads/${car.value.car.image}` : "",
                     "description": car.value?.car.description,
                     "sku": `CAR-${car.value?.car.id}`,
                     "brand": {
@@ -235,7 +235,7 @@ onMounted(async () => {
                     },
                     "offers": {
                         "@type": "Offer",
-                        "url": `https://car-tap.ir/cars/${car.value?.car.id}`,
+                        "url": `https://tap-car.ir/cars/${car.value?.car.id}`,
                         "priceCurrency": "USD",
                         "price": car.value?.car.price,
                         "availability": "https://schema.org/InStock",

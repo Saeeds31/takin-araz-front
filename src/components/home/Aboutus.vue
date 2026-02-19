@@ -41,7 +41,7 @@ const store = useProfile();
 const settings = computed(() => store.getSettings);
 function gotoDownload() {
   if (settings.value && settings.value.car_prices)
-    window.open('https://api.car-tap.ir/public/uploads/' + settings.value.car_prices, '_blank')
+    window.open('https://api.tap-car.ir/public/uploads/' + settings.value.car_prices, '_blank')
 }
 </script>
 

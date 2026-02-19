@@ -42,13 +42,13 @@ useHead({
     },
     {
       property: 'og:url',
-      content: 'https://car-tap.ir/about-us'
+      content: 'https://tap-car.ir/about-us'
     }
   ],
   link: [
     {
       rel: 'canonical',
-      href: 'https://car-tap.ir/about-us'
+      href: 'https://tap-car.ir/about-us'
     }
   ]
 })

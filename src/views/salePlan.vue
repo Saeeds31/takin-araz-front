@@ -219,7 +219,7 @@ onMounted(async () => {
             },
             {
                 property: 'og:image',
-                content: "https://car-tap.ir/logo.png"
+                content: "https://tap-car.ir/logo.png"
             },
             {
                 property: 'og:url',
