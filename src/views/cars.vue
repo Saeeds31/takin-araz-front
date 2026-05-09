@@ -58,57 +58,103 @@
     <main class="grid w-screen lg:grid-cols-[1fr_3fr] grid-cols-1 gap-4 items-start  px-[5%] mt-8" v-if="cars">
         <template v-if="showFilter">
             <form v-if="filters" @submit.prevent="filterCars" id="filters"
-                class="flex flex-col gap-4 border-1 border-black-300 p-2 rounded">
-                <div class="flex flex-col gap-2">
-                    <h3 class="font-bold border-b-2 border-b-blue-950">جستجو بر اساس</h3>
+                class="bg-gradient-to-br from-gray-900 via-gray-950 to-black text-white rounded-3xl p-6 shadow-[0_20px_60px_rgba(0,0,0,0.5)] border border-white/10">
+                <!-- فیلد جستجو -->
+                <div class="mb-6 pb-4 border-b border-b-white/10">
+                    <h3 class="font-extrabold text-lg text-yellow-400 mb-3 flex items-center gap-2">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 21l-6-6m2-5a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        جستجو
+                    </h3>
                     <div class="flex flex-col gap-3">
-                        <div class="flex justify-between items-center">
-                            <label for="search">عنوان خودرو :</label>
-                            <input type="text" class="border-2 border-b-blue-950 rounded p-2" name="search">
+                        <div class="flex flex-col gap-1">
+                            <label for="search" class="text-sm text-gray-300">عنوان خودرو :</label>
+                            <input type="text" name="search" id="search"
+                                class="bg-black/70 border border-white/20 rounded-lg px-3 py-2 text-white focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400 transition duration-300" />
                         </div>
-                        <div class="flex justify-between items-center">
-                            <label for="min">کمترین قیمت (دلار):</label>
-                            <input type="number" class="border-2 border-b-blue-950 rounded p-2" v-model="min" name="min"
-                                @input="checkMin">
+                        <div class="flex flex-col gap-1">
+                            <label for="min" class="text-sm text-gray-300">کمترین قیمت (دلار):</label>
+                            <input type="number" v-model="min" @input="checkMin" name="min" id="min"
+                                class="bg-black/70 border border-white/20 rounded-lg px-3 py-2 text-white focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400 transition duration-300" />
                         </div>
-                        <div class="flex justify-between items-center">
-                            <label for="max">بیشترین قیمت (دلار):</label>
-                            <input type="number" class="border-2 border-b-blue-950 rounded p-2" v-model="max" name="max"
-                                @input="checkMax">
+                        <div class="flex flex-col gap-1">
+                            <label for="max" class="text-sm text-gray-300">بیشترین قیمت (دلار):</label>
+                            <input type="number" v-model="max" @input="checkMax" name="max" id="max"
+                                class="bg-black/70 border border-white/20 rounded-lg px-3 py-2 text-white focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400 transition duration-300" />
                         </div>
-                    </div>
-
-                </div>
-
-                <div class="flex flex-col gap-2">
-                    <h3 class="font-bold border-b-2 border-b-blue-950">برند خودرو</h3>
-
-                    <div v-for="(item, index) in filters.brands" :key="index"
-                        class="flex cursor-pointer  items-center gap-1">
-                        <input type="radio" :id="`brand${item.id}`" class="w-4 h-4 accent-amber-700" :value="item.id"
-                            name="brand_id">
-                        <label :for="`brand${item.id}`" class="cursor-pointer">{{ item.title }}</label>
                     </div>
                 </div>
 
-                <div class="flex flex-col gap-2">
-                    <h3 class="font-bold border-b-2 border-b-blue-950">دسته بندی خودرو</h3>
-
-                    <div v-for="(item, index) in filters.categories" :key="index"
-                        class="flex cursor-pointer  items-center gap-1">
-                        <input type="radio" :id="`category${item.id}`" class="w-4 h-4 accent-amber-700" :value="item.id"
-                            name="category_id">
-                        <label :for="`category${item.id}`" class="cursor-pointer">{{ item.title }}</label>
+                <!-- فیلتر برند -->
+                <div class="mb-6 pb-4 border-b border-b-white/10">
+                    <h3 class="font-extrabold text-lg text-yellow-400 mb-3 flex items-center gap-2">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M8 13l1.394 1.394c-.273.852-.447 1.776-.447 2.778v1M8 13a4 4 0 110 8m0-8a4 4 0 100 8m-8-5a.75.75 0 01.75-.75h13.5a.75.75 0 01.75.75v4.5a.75.75 0 01-.75.75h-13.5a.75.75 0 01-.75-.75v-4.5a.75.75 0 01.75-.75zm12.75 0h2.75a.75.75 0 00.75-.75v-4.5a.75.75 0 00-.75-.75h-2.75a.75.75 0 00-.75.75v4.5a.75.75 0 00.75.75z" />
+                        </svg>
+                        برند
+                    </h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div v-for="(item, index) in filters.brands" :key="index"
+                            class="flex items-center gap-2 cursor-pointer hover:text-yellow-400 transition duration-300">
+                            <input type="radio" :id="`brand${item.id}`" class="w-4 h-4 accent-amber-700 rounded-full"
+                                :value="item.id" name="brand_id">
+                            <label :for="`brand${item.id}`" class="cursor-pointer flex-grow">{{ item.title }}</label>
+                        </div>
                     </div>
                 </div>
-                <div class="grid grid-cols-[3fr_1fr] gap-1">
-                    <button type="submit" :class="{ 'disabled': loader }"
-                        class="carBtn w-full text-center bg-base  border !text-white base-back-border rounded  md:px-4 md:py-3 px-2 py-1">
-                        فیلتر سازی
+
+                <!-- فیلتر دسته بندی -->
+                <div>
+                    <h3 class="font-extrabold text-lg text-yellow-400 mb-3 flex items-center gap-2">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 4.5l7.5 6 3.75-4.5c.506-.405 1.213-.385 1.71.03L19.5 7.5m-1.5 4.5h4.5m-4.5 1.5v1.5m-15 0h15m-7.5-6v7.5" />
+                        </svg>
+                        دسته بندی
+                    </h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div v-for="(item, index) in filters.categories" :key="index"
+                            class="flex items-center gap-2 cursor-pointer hover:text-yellow-400 transition duration-300">
+                            <input type="radio" :id="`category${item.id}`" class="w-4 h-4 accent-amber-700 rounded-full"
+                                :value="item.id" name="category_id">
+                            <label :for="`category${item.id}`" class="cursor-pointer flex-grow">{{ item.title }}</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- دکمه‌ها -->
+                <div class="grid grid-cols-2 gap-3 mt-8">
+                    <button type="submit" :disabled="loader"
+                        class="carBtn group relative inline-flex items-center justify-center overflow-hidden px-4 py-2.5 rounded-full font-semibold text-white transition duration-500 ease-in-out focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-black disabled:opacity-50 disabled:cursor-not-allowed">
+                        <span
+                            class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 origin-left transform scale-x-0 group-hover:scale-x-100">
+                            فیلتر کردن
+                        </span>
+                        <span
+                            class="flex items-center gap-2 transition-colors duration-300 group-hover:text-transparent">
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M19.5 13.5L12 20.25l-7.5-6.75M19.5 4.5l-7.5 6.75L4.5 4.5" />
+                            </svg>
+                            فیلتر
+                        </span>
                     </button>
-                    <button type="button" @click="resetFilter()" :class="{ 'disabled': loader }"
-                        class="carBtn w-full text-center bg-green-400   border !text-white rounded  md:px-4 md:py-3 px-2 py-1">
-                        لغو
+                    <button type="button" @click="resetFilter" :disabled="loader"
+                        class="carBtn group relative inline-flex items-center justify-center overflow-hidden px-4 py-2.5 rounded-full font-semibold text-black transition duration-500 ease-in-out focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-black disabled:opacity-50 disabled:cursor-not-allowed bg-yellow-400 hover:bg-yellow-500">
+                        <span
+                            class="absolute inset-0 flex items-center justify-center w-full h-full text-black duration-300 origin-left transform scale-x-0 group-hover:scale-x-100">
+                            لغو فیلتر
+                        </span>
+                        <span
+                            class="flex items-center gap-2 transition-colors duration-300 group-hover:text-transparent">
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                            لغو
+                        </span>
                     </button>
                 </div>
             </form>
@@ -293,7 +339,7 @@ onMounted(async () => {
     form#filters {
         position: fixed;
         inset: 0;
-        background: white;
+        z-index: 10000;
         overflow: scroll;
     }
 }

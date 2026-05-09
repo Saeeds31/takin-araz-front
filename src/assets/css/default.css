@@ -91,5 +91,12 @@
   color: var(--base-color);
 }
 #app {
-  background-color: #f0f0f0;
+  background: linear-gradient(180deg, #11221191,white, transparent);
+  backdrop-filter: drop-shadow(2px 4px 6px black);
+}
+nav a {
+  color: white;
+}
+nav svg path {
+  fill: white;
 }

@@ -1,53 +1,85 @@
 <template>
-    <header id="header" class="w-screen">
+    <header id="header" class="w-full bg-gradient-to-br from-gray-900 via-gray-950 to-black text-white py-3">
+        <!-- Top Bar -->
         <section v-if="settings" id="topBar"
-            class="flex   items-center lg:justify-between justify-center px-[5%] py-4 text-white">
-            <p class="hidden lg:block">
+            class="flex lg:justify-between justify-center items-center px-[5%] py-2 text-white/80 relative">
+            <!-- Hidden on large screens, shown as part of mobile menu maybe -->
+            <p
+                class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 lg:hidden text-yellow-400 font-bold text-lg">
+                <slot name="mobile-title">تاپ‌کار</slot>
+            </p>
+            <p class="hidden lg:block text-sm">
                 {{ settings.header_text_1 }}
             </p>
-            <p class="hidden lg:block">
+            <p class="hidden lg:block text-sm">
                 {{ settings.header_text_2 }}
             </p>
-            <p class="flex gap-2 items-center">
-                <span class="text-[12px]">پشتیبانی همه روزه از ساعت 10 تا 17</span>
-
-                <b>
+            <div class="flex gap-3 items-center text-xs lg:text-sm whitespace-nowrap">
+                <span>پشتیبانی همه روزه از ساعت 10 تا 17</span>
+                <b class="text-yellow-400 text-base lg:text-lg">
                     {{ settings.header_phone }}
                 </b>
-            </p>
+            </div>
         </section>
-        <section id="mainHeader" class="flex items-center justify-between px-[5%] py-3">
-            <button class="block md:hidden" @click="openedMobile = true">
-                <IconMenu />
+
+        <!-- Main Header -->
+        <section id="mainHeader" class="flex items-center justify-between px-[5%] py-3 relative">
+            <!-- Mobile Menu Button (visible on small screens) -->
+            <button class="block md:hidden z-30" @click="openedMobile = true">
+                <svg class="w-8 h-8 text-white/90 hover:text-yellow-400 transition duration-300" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
+                </svg>
             </button>
-            <Branding />
+
+            <!-- Branding -->
+            <div class="flex justify-center lg:justify-start">
+                <Branding class="w-40 lg:w-48" />
+            </div>
+
+            <!-- Navigation Menus -->
             <Menus @closeMenu="openedMobile = false" :openedMobile="openedMobile" :list="menus" />
-            <router-link v-if="!user" id="loginBtn" class="rounded flex items-center gap-3 px-2 py-1.5"
-                to="/check-mobile">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+
+            <!-- Login/User Button -->
+            <router-link id="loginBtn"
+                class="group relative rounded-full flex items-center gap-3 px-4 py-2 transition duration-500 border border-white/20 hover:border-yellow-400 hover:bg-yellow-500/10 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-black"
+                :to="user ? '#' : '/check-mobile'">
+                <svg class="w-6 h-6 text-white/80 group-hover:text-yellow-400 transition duration-300" fill="none"
+                    viewBox="0 0 24 24">
                     <path
                         d="M12 10C14.2091 10 16 8.20914 16 6C16 3.79086 14.2091 2 12 2C9.79086 2 8 3.79086 8 6C8 8.20914 9.79086 10 12 10Z"
-                        stroke="white" />
+                        stroke="currentColor" stroke-width="1.5" />
                     <path
                         d="M20 17.5C20 19.985 20 22 12 22C4 22 4 19.985 4 17.5C4 15.015 7.582 13 12 13C16.418 13 20 15.015 20 17.5Z"
-                        stroke="white" />
+                        stroke="currentColor" stroke-width="1.5" />
                 </svg>
-                <span class="text-white">ورود | عضویت</span>
-            </router-link>
-            <router-link v-else id="loginBtn" class="rounded flex items-center gap-3 px-2 py-1.5" to="#">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path
-                        d="M12 10C14.2091 10 16 8.20914 16 6C16 3.79086 14.2091 2 12 2C9.79086 2 8 3.79086 8 6C8 8.20914 9.79086 10 12 10Z"
-                        stroke="white" />
-                    <path
-                        d="M20 17.5C20 19.985 20 22 12 22C4 22 4 19.985 4 17.5C4 15.015 7.582 13 12 13C16.418 13 20 15.015 20 17.5Z"
-                        stroke="white" />
-                </svg>
-                <span class="text-white">
-                    {{ user.full_name ?? user.mobile }}
+                <span class="text-white/80 group-hover:text-yellow-400 transition duration-300">
+                    {{ user ? (user.full_name ?? user.mobile) : 'ورود | عضویت' }}
                 </span>
+                <!-- Subtle glow effect on hover -->
+                <span
+                    class="absolute inset-0 w-full h-full scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out bg-yellow-400/20 rounded-full -z-10"></span>
             </router-link>
 
+            <!-- Breadcrumbs - Example (Add your actual breadcrumb logic here) -->
+            <div v-if="showBreadcrumbs"
+                class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full w-full px-[5%] py-1 text-sm text-gray-400">
+                <nav aria-label="Breadcrumb">
+                    <ol class="flex items-center gap-2">
+                        <li>
+                            <router-link to="/" class="hover:text-yellow-400 transition">خانه</router-link>
+                        </li>
+                        <li v-for="(crumb, index) in breadcrumbs" :key="index" class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 8.25-7.5 8.25" />
+                            </svg>
+                            <router-link :to="crumb.to" class="hover:text-yellow-400 transition">{{ crumb.text
+                                }}</router-link>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
         </section>
     </header>
 </template>
@@ -80,5 +112,45 @@ header #topBar {
 
 #loginBtn {
     background-color: #ABA900;
+}
+
+#header {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    /* Subtle shadow for depth */
+}
+
+#topBar {
+    /* background: linear-gradient(to right, #1F2937, #0F172A); */
+    /* Example gradient */
+}
+
+#mainHeader {
+    /* background: linear-gradient(to right, #111827, #0F172A); */
+    /* Darker gradient for main header */
+}
+
+/* Button hover effects */
+.group:hover #loginBtn span:not(.scale-0) {
+    transform: scaleX(0);
+}
+
+.group:hover #loginBtn span.scale-0 {
+    transform: scaleX(1);
+}
+
+/* Make sure the mobile menu button is on top */
+.md\:hidden {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .md\:hidden {
+        display: none;
+    }
+}
+
+/* Subtle glow effect for the login button */
+#loginBtn:hover .glow {
+    transform: scale(1);
 }
 </style>

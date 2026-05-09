@@ -38,83 +38,164 @@
 
         </ul>
     </nav>
-    <main class="grid w-screen lg:grid-cols-[2fr_1fr] grid-cols-1 gap-4 items-start  px-[5%] mt-8" v-if="car">
-        <section class="w-full overflow-hidden">
-            <section class="w-full items-center mx-auto grid lg:grid-cols-2 grid-cols-1 gap-6 ">
-                <div class="flex flex-col items-start gap-3  px-6 py-4 rounded-xl">
-                    <h1 class="font-bold text-3xl pb-3 border-b w-full border-b-base">
-                        {{ car.car.name }}
-                    </h1>
-                    <h3 class="flex items-center justify-between w-full gap-3">
-                        <span>نوع ماشین:</span>
-                        <span class="font-bold">{{ car.car.category?.title }}</span>
-                    </h3>
+    <main class="bg-neutral-950 text-white mt-6 px-[5%] pt-8 pb-14 w-[100vw]" v-if="car">
+        <div class="mx-auto w-full max-w-6xl grid items-start gap-8 lg:grid-cols-[2fr_1fr] grid-cols-1">
+            <!-- LEFT: Gallery + Description -->
+            <section class="w-full">
+                <!-- Top area: name + specs short + main image -->
+                <section class="w-full">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+                        <!-- Info card (left on desktop) -->
+                        <div
+                            class="flex flex-col justify-between gap-6 px-5 py-5 rounded-2xl border border-yellow-400/20 bg-neutral-900/35 shadow-[0_0_0_1px_rgba(252,211,73,0.08)]">
+                            <div>
+                                <h1 class="font-bold text-3xl leading-tight pb-4 border-b border-white/10">
+                                    {{ car.car.name }}
+                                </h1>
 
-                    <h3 class="flex items-center justify-between  w-full gap-3">
-                        <span>برند:</span>
-                        <span class="font-bold">{{ car.car.brand?.title }}</span>
-                    </h3>
+                                <div class="mt-4 space-y-3">
+                                    <div class="flex items-center justify-between gap-3">
+                                        <span class="text-neutral-300">نوع ماشین:</span>
+                                        <span class="font-bold text-yellow-200">
+                                            {{ car.car.category?.title }}
+                                        </span>
+                                    </div>
 
-                    <h3 class="flex items-center justify-between  w-full gap-3">
-                        <span>قیمت:</span>
-                        <span class="font-bold">{{ Number(car.car.price).toLocaleString('fa') }}دلار</span>
-                    </h3>
-                    <div class="w-full flex lg:flex-row flex-col items-center justify-between mt-6 gap-4">
-                        <q class="base-color">باتوجه به نوسان قیمت بازار
-                            <br>
-                            ارقام تقریبی وارد شده است</q>
-                        <BaseButton :disabled="loader" @click="gotoLink(car.car.id)" class=" base-back">
-                            پیش ثبت نام
-                        </BaseButton>
-                    </div>
-                </div>
-                <img class="w-full  rounded-xl" v-lazy="$filters.resource(car.car.image)" />
-            </section>
-            <section v-if="car.car.images && car.car.images.length" class="w-full overflow-hidden mt-8">
-                <div class="flex items-center justify-between">
-                    <h3 class="font-bold text-2xl mb-4">سایر تصاویر</h3>
-                    <div class="flex items-center gap-4">
-                        <button @click="next" class="
-             size-8 rounded-full  bg-neutral-200/80 flex items-center justify-center 
-            base-back hover:text-white transition-colors duration-150
-            ">
-                            <IconArrowRight :color="'white'" />
-                        </button>
-                        <button @click="prev" class="
-             size-8 rounded-full  bg-neutral-200/80 flex items-center justify-center 
-            base-back hover:text-white transition-colors duration-150
-            ">
-                            <IconArrowLeft :color="'white'" />
-                        </button>
-                    </div>
-                </div>
-                <Swiper :modules="modules" @swiper="onSwiper" :autoplay="false" :loop="true" :speed="700"
-                    :slides-per-view="1" :space-between="0" :effect="'fade'" :pagination="{ clickable: true }"
-                    class="w-full mx-auto  custom-swiper  mt-0 xl:mt-12">
-                    <SwiperSlide v-for="(slide, i) in car.car.images" :key="i" class="product-slide">
-                        <div class="slide-item w-[99%]">
-                            <img class="w-[99%]" v-lazy="$filters.resource(slide.path)" />
+                                    <div class="flex items-center justify-between gap-3">
+                                        <span class="text-neutral-300">برند:</span>
+                                        <span class="font-bold text-yellow-200">
+                                            {{ car.car.brand?.title }}
+                                        </span>
+                                    </div>
+
+                                    <div class="flex items-center justify-between gap-3">
+                                        <span class="text-neutral-300">قیمت:</span>
+                                        <span class="font-bold text-yellow-300">
+                                            {{ Number(car.car.price).toLocaleString('fa') }} دلار
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="w-full flex lg:flex-row flex-col items-start lg:items-center justify-between gap-4">
+                                <q class="text-neutral-300  bg-white/0">
+                                    <span class="text-yellow-200 font-semibold">نکته:</span>
+                                    <br />
+                                    باتوجه به نوسان قیمت بازار، ارقام تقریبی وارد شده است
+                                </q>
+
+                                <BaseButton :disabled="loader" @click="gotoLink(car.car.id)" class="base-back">
+                                    پیش ثبت نام
+                                </BaseButton>
+                            </div>
                         </div>
-                    </SwiperSlide>
-                </Swiper>
+
+                        <!-- Main image -->
+                        <div class="relative rounded-2xl overflow-hidden border border-white/10 bg-neutral-900/20">
+                            <img class="w-full h-full min-h-[260px] lg:min-h-[420px] object-cover object-center transition-transform duration-700 hover:scale-[1.04]"
+                                v-lazy="$filters.resource(car.car.image)" :alt="car.car.name" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-transparent">
+                            </div>
+                            <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                                <span
+                                    class="px-3 py-1 rounded-full border border-yellow-400/25 bg-yellow-400/10 text-yellow-200 text-sm">
+                                    تاپ‌کار • جزئیات خودرو
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Other images slider -->
+                <section v-if="car.car.images && car.car.images.length" class="w-full overflow-hidden mt-10">
+                    <div class="flex items-center justify-between gap-4 mb-4">
+                        <h3 class="font-bold text-2xl">
+                            سایر تصاویر
+                        </h3>
+
+                        <div class="flex items-center gap-2">
+                            <button @click="next" class="
+                  size-10 rounded-full bg-white/5 border border-white/10
+                  flex items-center justify-center text-white/80
+                  hover:bg-yellow-400/15 hover:border-yellow-400/35 hover:text-white
+                  transition-colors duration-150
+                " aria-label="بعدی">
+                                <IconArrowRight :color="'currentColor'" />
+                            </button>
+
+                            <button @click="prev" class="
+                  size-10 rounded-full bg-white/5 border border-white/10
+                  flex items-center justify-center text-white/80
+                  hover:bg-yellow-400/15 hover:border-yellow-400/35 hover:text-white
+                  transition-colors duration-150
+                " aria-label="قبلی">
+                                <IconArrowLeft :color="'currentColor'" />
+                            </button>
+                        </div>
+                    </div>
+
+                    <div
+                        class="custom-swiper !rounded-2xl overflow-hidden border border-yellow-400/25 shadow-[0_20px_60px_rgba(0,0,0,0.55)] bg-neutral-950/35">
+                        <Swiper :modules="modules" @swiper="onSwiper" :autoplay="false" :loop="true" :speed="700"
+                            :slides-per-view="1" :space-between="0" :effect="'fade'" :pagination="{ clickable: true }"
+                            class="w-full mx-auto">
+                            <SwiperSlide v-for="(slide, i) in car.car.images" :key="i" class="product-slide">
+                                <div class="slide-item w-full h-[280px] sm:h-[360px] lg:h-[460px] relative">
+                                    <img class="w-full h-full object-cover object-center transition-transform duration-700 ease-in-out hover:scale-[1.03]"
+                                        v-lazy="$filters.resource(slide.path)" :alt="`تصویر ${i + 1}`" />
+
+                                    <!-- gradient overlay for better readability -->
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/15 to-transparent">
+                                    </div>
+
+                                    <!-- subtle frame glow -->
+                                    <div
+                                        class="absolute inset-0 border border-yellow-400/10 rounded-2xl pointer-events-none">
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                        </Swiper>
+                    </div>
+                </section>
+
+                <!-- Description -->
+                <div class="mt-8 whitespace-pre-line text-neutral-200 leading-8">
+                    <div class="p-5 rounded-2xl border border-white/10 bg-neutral-900/20">
+                        {{ car.car.description }}
+                    </div>
+                </div>
             </section>
-            <div class="mt-6 whitespace-pre-line">
-                {{ car.car.description }}
-            </div>
-        </section>
-        <section v-if="car.specifications">
-            <div v-for="(item, index) in car.specifications" :key="index"
-                class="mt-6 border base-back-border p-4 rounded-2xl flex flex-col items-start gap-3">
-                <q class="font-bold text-xl">{{ item.group_title }}</q>
-                <ul class="w-full">
-                    <li v-for="(spe, index) in item.rows" :key="index"
-                        class="flex w-full justify-between items-center text-black gap-4 px-6">
-                        <span>{{ spe.title }}</span>
-                        <span class="font-bold">{{ spe.value }}</span>
-                    </li>
-                </ul>
-            </div>
-        </section>
+
+            <!-- RIGHT: Specifications -->
+            <section v-if="car.specifications" class="w-full">
+                <div class="space-y-6">
+                    <div class="mb-2 px-2">
+                        <h3 class="font-bold text-2xl">مشخصات</h3>
+                        <p class="text-neutral-400 mt-2 text-sm">
+                            خلاصه اطلاعات فنی خودرو
+                        </p>
+                    </div>
+
+                    <div v-for="(item, index) in car.specifications" :key="index"
+                        class="mt-2 border border-white/10 rounded-2xl p-5 bg-neutral-900/25 shadow-[0_0_0_1px_rgba(252,211,73,0.06)]">
+                        <q class="font-bold text-xl text-yellow-200">
+                            {{ item.group_title }}
+                        </q>
+
+                        <ul class="w-full mt-4">
+                            <li v-for="(spe, index) in item.rows" :key="index"
+                                class="flex w-full justify-between items-center gap-4 px-2 py-2 border-t border-white/5 last:border-b-0">
+                                <span class="text-neutral-300">{{ spe.title }}</span>
+                                <span class="font-bold text-white">
+                                    {{ spe.value }}
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
     <div v-else class="flex items-center justify-center mt-[86px]">
         <div class="loader">
@@ -353,5 +434,44 @@ onMounted(async () => {
     .custom-swiper :deep(.swiper-slide-active) {
         transform: scale(1.05);
     }
+}
+</style>
+<style>
+.custom-swiper .swiper,
+.custom-swiper .swiper-wrapper,
+.custom-swiper .swiper-slide {
+    height: 100%;
+}
+
+.custom-swiper .swiper-slide {
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    opacity: 0.999;
+    width: 100% !important;
+    /* جلوگیری از flicker در بعضی مرورگرها */
+}
+
+.product-slide {
+    width: 100%;
+}
+
+.slide-item {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+/* pagination bullets تم تیره/طلایی */
+.custom-swiper :deep(.swiper-pagination-bullet) {
+    width: 10px !important;
+    height: 10px !important;
+    background: rgba(255, 255, 255, 0.25) !important;
+    opacity: 1 !important;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.custom-swiper :deep(.swiper-pagination-bullet-active) {
+    background: rgba(252, 211, 73, 1) !important;
+    transform: scale(1.25);
 }
 </style>
