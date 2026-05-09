@@ -42,6 +42,13 @@ const routes = [
         name: "Aboutus",
         component: () => import("@/views/Aboutus.vue"),
       },
+
+      {
+        path: "/contact-us",
+        name: "Contactus",
+        component: () => import("@/views/Contactus.vue"),
+      },
+      
     ],
   },
 
