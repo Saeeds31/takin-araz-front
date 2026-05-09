@@ -3,7 +3,7 @@
         <Branding class="mb-3" />
 
         <h2 class="text-center text-2xl font-family-bold ">درخواست ساماندهی جلسات </h2>
-        <p class="mb-4">برای ثبت درخواست در سامانه تکین آرتا پرگاس ؛ لطفا فرم زیر را با دقت وارد نمایید</p>
+        <p class="mb-4">برای ثبت درخواست در سامانه تاپ کار ؛ لطفا فرم زیر را با دقت وارد نمایید</p>
 
         <Form class="w-full lg:w-1/2" @submit="submit" :validation-schema="schema" v-slot="{ meta }">
             <FormInput type="text" label="نام و  نام خانوادگی" dir="ltr" name="full_name"

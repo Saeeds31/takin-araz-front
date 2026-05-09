@@ -35,7 +35,7 @@
                 <img src="@/assets/images/placeholder-image.png" alt="پروفایل"
                     class="w-[95%] m-auto rounded-2xl border border-5 border-white shadow-lg">
                 <h4 class="mt-3 mb-0">{{ user?.full_name || 'نام کاربر' }}</h4>
-                <small>عضو تکین آرتا پرگاس</small>
+                <small>عضو تاپ کار</small>
             </div>
 
             <div class="card-body p-5">
@@ -92,7 +92,7 @@
                                 <i class="bi bi-shield-check fs-4"></i>
                             </div>
                             <div>
-                                <small class="text-muted">اعتبار در تکین آرتا پرگاس</small>
+                                <small class="text-muted">اعتبار در تاپ کار</small>
                                 <p class="mb-0 fw-bold fs-4" dir="ltr"
                                     :class="user?.validity ? 'text-success' : 'text-danger'">
                                     {{ user?.validity ?

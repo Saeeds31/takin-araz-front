@@ -3,7 +3,7 @@
         <span class="text-neutral-600 text-xs text-nowrap">{{ $filters.date(Date.now(), 'year') }} - {{ gregorian
             }}</span>
         <span class="text-neutral-600 hidden md:block ">•</span>
-        <p class="text-neutral-600 text-xs text-nowrap">تمامی حقوق وب سایت برای شرکت تکین آرتا پرگاس محفوظ است.</p>
+        <p class="text-neutral-600 text-xs text-nowrap">تمامی حقوق وب سایت برای شرکت تاپ کار محفوظ است.</p>
         <a href="https://padhosha.ir" target="_blank" class="text-neutral-600 text-xs text-nowrap">
             طراحی و پیاده سازی توسط تیم <b>پدهوشا</b>
         </a>

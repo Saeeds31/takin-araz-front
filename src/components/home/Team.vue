@@ -1,6 +1,6 @@
 <template>
   <div class="mt-20">
-    <h2 class="mb-10 text-2xl font-family-bold text-center">تیم تکین آرتا پرگاس</h2>
+    <h2 class="mb-10 text-2xl font-family-bold text-center">تیم تاپ کار</h2>
 
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       <template v-for="team in teams.slice(0,4)" :key="team.id">

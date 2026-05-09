@@ -1,7 +1,7 @@
 <template>
   <div>
     <p class="text-sm text-gray-400 mb-4">تماس باما</p>
-    <p class="text-lg mb-4">تکین آرتا پرگاس</p>
+    <p class="text-lg mb-4">تاپ کار</p>
   </div>
 
   <div class="grid grid-cols-1 lg:grid-cols-2 items-start mb-4">

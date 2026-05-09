@@ -4,7 +4,7 @@
             <span class="text-sm font-family-semi-bold">ثبت فیش واریزی:</span>
         </div>
         <BaseCard variant="filled" mode="success" class="mb-4">
-            <h6 class="font-semibold text-md mb-2">شماره کارت به نام موسسه بین المللی تکین آرتا پرگاس :</h6>
+            <h6 class="font-semibold text-md mb-2">شماره کارت به نام موسسه بین المللی تاپ کار :</h6>
             <div class="flex items-stretch flex-wrap gap-3">
                 <span
                     class="border-2 border-gray-500 border-dashed rounded-sm flex items-center py-3 text-gray-700 text-sm font-family-semi-bold w-full px-4 md:px-20 md:w-auto select-none">

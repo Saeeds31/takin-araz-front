@@ -5,7 +5,7 @@
             <div class="relative">
                 <img class="w-full aspect-[4/6] lg:aspect-[16/6] rounded-xl object-cover"  v-lazy="$filters.resource(slide.image)"
                     alt="">
-                <div class="absolute start-0  top-4 px-4 pb-4">
+                <div class="sliderContent absolute start-0  top-4 px-4 pb-4">
                     <div class=" min-h-24 lg:min-h-36 py-4 rounded-xl px-4 flex items-start justify-center flex-col">
                         <h3 class=" mb-3 font-bold">
                             {{ slide?.title }}
@@ -95,5 +95,10 @@ onUnmounted(() => {
 .swiper-button-prev,
 .swiper-button-next {
     display: none !important;
+}
+.sliderContent {
+    background-color: #ffffff47;
+    border-radius: 8px;
+    backdrop-filter: blur(1px);
 }
 </style>
