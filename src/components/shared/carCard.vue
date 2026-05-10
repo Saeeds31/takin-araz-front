@@ -18,7 +18,7 @@
 
         <!-- اطلاعات -->
         <div class="p-6 space-y-5">
-            <h2 class="text-xl font-extrabold tracking-tight min-h-[56px]">
+            <h2 class="lg:text-xl text-sm font-extrabold tracking-tight min-h-[56px]">
                 {{ car.name }}
             </h2>
 
@@ -34,7 +34,7 @@
 
                 <!-- مشاهده جزئیات -->
                 <router-link :to="`/cars/${car.id}`"
-                    class="flex-1 inline-flex justify-center items-center gap-2 bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-400 text-black font-semibold px-2 py-1 rounded-full shadow-[0_8px_25px_rgba(234,179,8,0.3)] transition-all duration-300">
+                    class="w-full flex-1 inline-flex justify-center items-center gap-2 bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-400 text-black font-semibold px-2 py-1 rounded-full shadow-[0_8px_25px_rgba(234,179,8,0.3)] transition-all duration-300">
                     <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
@@ -48,7 +48,7 @@
 
                 <!-- درخواست ثبت خودرو -->
                 <a @click="saleCar(car.id)"
-                    class="flex-1 inline-flex justify-center items-center gap-2 border border-yellow-400/60 text-yellow-400 hover:bg-yellow-400 hover:text-black font-semibold px-2 py-1 rounded-full transition-all duration-300 backdrop-blur-md">
+                    class="w-full  flex-1 inline-flex justify-center items-center gap-2 border border-yellow-400/60 text-yellow-400 hover:bg-yellow-400 hover:text-black font-semibold px-2 py-1 rounded-full transition-all duration-300 backdrop-blur-md">
                     ثبت خودرو
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"

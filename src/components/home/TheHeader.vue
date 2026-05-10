@@ -4,19 +4,16 @@
         <section v-if="settings" id="topBar"
             class="flex lg:justify-between justify-center items-center px-[5%] py-2 text-white/80 relative">
             <!-- Hidden on large screens, shown as part of mobile menu maybe -->
-            <p
-                class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 lg:hidden text-yellow-400 font-bold text-lg">
-                <slot name="mobile-title">تاپ‌کار</slot>
-            </p>
+       
             <p class="hidden lg:block text-sm">
                 {{ settings.header_text_1 }}
             </p>
-            <p class="hidden lg:block text-sm">
+            <p class="hidden lg:block text-sm ">
                 {{ settings.header_text_2 }}
             </p>
             <div class="flex gap-3 items-center text-xs lg:text-sm whitespace-nowrap">
                 <span>پشتیبانی همه روزه از ساعت 10 تا 17</span>
-                <b class="text-yellow-400 text-base lg:text-lg">
+                <b class="text-yellow-400 text-base lg:text-lg lg:whitespace-pre whitespace-normal">
                     {{ settings.header_phone }}
                 </b>
             </div>
@@ -43,9 +40,9 @@
 
             <!-- Login/User Button -->
             <router-link id="loginBtn"
-                class="group relative rounded-full flex items-center gap-3 px-4 py-2 transition duration-500 border border-white/20 hover:border-yellow-400 hover:bg-yellow-500/10 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-black"
+                class="group relative rounded-full flex items-center gap-3 px-4 lg:py-2 py-1 py-2 transition duration-500 border border-white/20 hover:border-yellow-400 hover:bg-yellow-500/10 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-black"
                 :to="user ? '#' : '/check-mobile'">
-                <svg class="w-6 h-6 text-white/80 group-hover:text-yellow-400 transition duration-300" fill="none"
+                <svg class="lg:block hidden w-6 h-6 text-white/80 group-hover:text-yellow-400 transition duration-300" fill="none"
                     viewBox="0 0 24 24">
                     <path
                         d="M12 10C14.2091 10 16 8.20914 16 6C16 3.79086 14.2091 2 12 2C9.79086 2 8 3.79086 8 6C8 8.20914 9.79086 10 12 10Z"
@@ -54,7 +51,7 @@
                         d="M20 17.5C20 19.985 20 22 12 22C4 22 4 19.985 4 17.5C4 15.015 7.582 13 12 13C16.418 13 20 15.015 20 17.5Z"
                         stroke="currentColor" stroke-width="1.5" />
                 </svg>
-                <span class="text-white/80 group-hover:text-yellow-400 transition duration-300">
+                <span class="text-white/80 group-hover:text-yellow-400 lg:text-2xl text-[12px] transition  duration-300">
                     {{ user ? (user.full_name ?? user.mobile) : 'ورود | عضویت' }}
                 </span>
                 <!-- Subtle glow effect on hover -->

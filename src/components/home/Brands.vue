@@ -1,7 +1,7 @@
 <template>
   <section v-for="(brand, index) in homeBrands" :key="brand.title">
     <div class="w-full px-[5%] py-12" :dir="index % 2 == 0 ? 'rtl' : 'ltr'">
-      <div class="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-10 lg:gap-16 items-center relative w-full max-w-6xl mx-auto p-8 lg:p-12 rounded-xl
+      <div class="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-10 lg:gap-16 items-center relative w-full max-w-6xl mx-auto p-2 lg:p-12 rounded-xl
                bg-gradient-to-br from-gray-800 via-gray-900 to-black shadow-xl border border-neutral-700/50">
 
         <!-- Image Section -->
@@ -14,7 +14,7 @@
         </div>
 
         <!-- Content Section -->
-        <div class="w-full flex flex-col gap-4"
+        <div class="w-full flex flex-col gap-4 mobileMode"
           :class="index % 2 == 0 ? 'order-1 lg:order-2 items-start' : 'order-1 lg:order-2 items-end'">
 
           <h2
@@ -22,7 +22,7 @@
             {{ brand.title }}
           </h2>
 
-          <div class="whitespace-normal text-lg leading-8 text-gray-300 text-justify"
+          <div class="whitespace-normal mobileDesc text-lg leading-8 text-gray-300 text-justify"
             :dir="index % 2 == 0 ? 'rtl' : 'ltr'">
             {{ brand.description }}
           </div>
@@ -115,5 +115,42 @@ store.getHomeBrandsFromServer();
 .w-6.h-6 {
   width: 1.5rem;
   height: 1.5rem;
+}
+
+@media (max-width:990px) {
+  .mobileDesc {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    /* تعداد خطوط مورد نظر */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* تنظیمات بیشتر برای ظاهر بهتر */
+    max-width: 300px;
+    /* یا هر عرض دلخواه دیگر */
+    line-height: 1.5;
+    text-align: justify;
+    /* ارتفاع خطوط */
+    font-family: 'Tahoma', sans-serif;
+    /* فونت دلخواه */
+    font-size: 14px;
+  }
+
+  .mobileMode {
+    position: absolute;
+    z-index: 1000;
+    right: 16px;
+    top: 16px;
+    width: 90%;
+    background: #ffffff29;
+    backdrop-filter: blur(1px);
+    height: 90%;
+    border-radius: 8px;
+    padding: 8px;
+  }
+
+  .mobileMode .text-gray-300 {
+    color: white;
+  }
 }
 </style>

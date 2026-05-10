@@ -16,7 +16,7 @@
 
           </span>
         </BaseButton>
-        <BaseButton to="#" class=" base-back-border bg-transparent base-color">
+        <BaseButton to="#" class=" base-back-border bg-transparent base-color lg:block hidden">
           اطلاعیه ها
         </BaseButton>
       </div>
