@@ -10,7 +10,7 @@ import TheFooter from '@/components/home/TheFooter.vue';
 import TheHeader from '@/components/home/TheHeader.vue';
 import BigLoader from '@/components/shared/bigLoader.vue';
 import { useProfile } from '@/stores/modules/profile';
-import { computed, nextTick } from 'vue';
+import { computed, nextTick, onMounted } from 'vue';
 const store = useProfile();
 const settings = computed(() => store.getSettings);
 import { watch } from "vue";
@@ -23,6 +23,7 @@ watch(route, () => {
         document.getElementById('header').scrollIntoView({ behavior: 'smooth' })
     })
 });
+
 </script>
 
 <style scoped></style>

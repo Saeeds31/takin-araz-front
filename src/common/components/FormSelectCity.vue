@@ -10,7 +10,7 @@
 
     <div class="relative mb-4">
         <BaseFieldset :disabled="loader" :legend="'انتخاب شهر'" :state="state" class="py-1!">
-            <Multiselect v-model="value" :options="cities" trackBy="id" label="name" :allow-empty="false"
+            <Multiselect v-model="selectedCity" :options="cities" trackBy="id" label="name" :allow-empty="false"
                 :searchable="false" :placeholder="'شهر محل سکونت'" :select-label="''" :deselect-label="''"
                 :selected-label="'انتخاب شده'">
             </Multiselect>
@@ -28,7 +28,9 @@ import { useField } from 'vee-validate';
 import { getCurrentInstance } from 'vue'
 const instance = getCurrentInstance()
 const $axios = instance.appContext.config.globalProperties.$axios;
+const emits = defineEmits(['selectedCity'])
 const props = defineProps({
+
     name: {
         type: String,
         required: true,
@@ -38,6 +40,11 @@ const props = defineProps({
         required: true
     }
 });
+let selectedCity = ref('');
+watch(() => selectedCity.value, (newData) => {
+    value.value = newData;
+    emits('selectedCity', newData.id)
+}, { deep: true })
 let selectedProvince = ref(null);
 let provinces = ref([]);
 let cities = ref([]);
@@ -72,9 +79,9 @@ async function getCities() {
         if (props.user && props.user.city) {
             let hasInCity = cities.value.find((city) => city.id == props.user.city_id)
             if (hasInCity) {
-                value.value = props.user.city;
+                selectedCity.value = props.user.city;
             } else {
-                value.value = null;
+                selectedCity.value = null;
             }
         }
 
@@ -90,3 +97,4 @@ onMounted(() => {
 })
 
 </script>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

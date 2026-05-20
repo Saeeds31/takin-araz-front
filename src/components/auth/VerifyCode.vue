@@ -89,7 +89,6 @@ const resendCode = async () => {
 
 const submit = async () => {
     if (!token.value) return;
-
     try {
         const successful = await store.verify(token.value);
 

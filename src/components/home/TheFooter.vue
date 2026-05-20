@@ -82,7 +82,34 @@
       </div>
     </div>
   </footer>
+  <nav class="md:hidden block">
+    <div
+      class="bg-black w-full fixed z-[6000] flex items-center gap-1 justify-between px-3 py-3 bottom-0 right-0 md:hidden">
+      <RouterLink to="/" class="flex items-center gap-3"
+        active-class="relative text-blue-700 marker before:bg-blue-600">
+        <IconHome :color="'white'" />
+        <span class="font-medium text-white font-family-semi-bold text-md">خانه</span>
+      </RouterLink>
+      <RouterLink :to="auth.hasToken? '/user-panel' : '/check-mobile'" class="flex items-center gap-3"
+        active-class="relative text-blue-700 marker before:bg-blue-600">
+        <IconPersonStatus />
+        <span class="font-medium text-white font-family-semi-bold text-md">پروفایل </span>
+      </RouterLink>
+      <RouterLink to="/cars" class="flex items-center gap-3"
+        active-class="relative text-blue-700 marker before:bg-blue-600">
+        <IconCar />
 
+        <span class="font-medium text-white font-family-semi-bold text-md">خودرو ها</span>
+      </RouterLink>
+
+      <RouterLink to="/contact-us" class="flex items-center gap-3"
+        active-class="relative text-blue-700 marker before:bg-blue-600">
+        <IconPhone />
+        <span class="font-medium text-white font-family-semi-bold text-md">تماس با ما</span>
+      </RouterLink>
+
+    </div>
+  </nav>
 </template>
 
 <script setup>
@@ -92,6 +119,12 @@ import IconLocation from "@/common/icons/IconLocation.vue";
 import { useMenu } from "@/stores/modules/menu";
 import { computed, ref } from "vue";
 import { useProfile } from '@/stores/modules/profile';
+import IconHome from "@/common/icons/iconHome.vue";
+import IconPersonStatus from "@/common/icons/IconPersonStatus.vue";
+import IconCar from "@/common/icons/iconCar.vue";
+import IconPhone from "@/common/icons/IconPhone.vue";
+import { useAuth } from "@/stores/modules/auth";
+const auth = useAuth();
 const store1 = useProfile()
 const settings = computed(() => store1.getSettings);
 

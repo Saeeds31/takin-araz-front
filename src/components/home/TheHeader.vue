@@ -1,17 +1,17 @@
 <template>
-    <header id="header" class="w-full bg-gradient-to-br from-gray-900 via-gray-950 to-black text-white py-3">
+    <header id="header" class="w-[100vw] bg-gradient-to-br from-gray-900 via-gray-950 to-black text-white py-3">
         <!-- Top Bar -->
         <section v-if="settings" id="topBar"
             class="flex lg:justify-between justify-center items-center px-[5%] py-2 text-white/80 relative">
             <!-- Hidden on large screens, shown as part of mobile menu maybe -->
-       
+
             <p class="hidden lg:block text-sm">
                 {{ settings.header_text_1 }}
             </p>
             <p class="hidden lg:block text-sm ">
                 {{ settings.header_text_2 }}
             </p>
-            <div class="flex gap-3 items-center text-xs lg:text-sm whitespace-nowrap">
+            <div class="flex md:flex-row flex-col gap-3 items-center text-xs lg:text-sm whitespace-nowrap">
                 <span>پشتیبانی همه روزه از ساعت 10 تا 17</span>
                 <b class="text-yellow-400 text-base lg:text-lg lg:whitespace-pre whitespace-normal">
                     {{ settings.header_phone }}
@@ -20,7 +20,7 @@
         </section>
 
         <!-- Main Header -->
-        <section id="mainHeader" class="flex items-center justify-between px-[5%] py-3 relative">
+        <section id="mainHeader" class="md:flex hidden items-center justify-between px-[5%] py-3 md:relative">
             <!-- Mobile Menu Button (visible on small screens) -->
             <button class="block md:hidden z-30" @click="openedMobile = true">
                 <svg class="w-8 h-8 text-white/90 hover:text-yellow-400 transition duration-300" fill="none"
@@ -41,9 +41,9 @@
             <!-- Login/User Button -->
             <router-link id="loginBtn"
                 class="group relative rounded-full flex items-center gap-3 px-4 lg:py-2 py-1 py-2 transition duration-500 border border-white/20 hover:border-yellow-400 hover:bg-yellow-500/10 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-black"
-                :to="user ? '#' : '/check-mobile'">
-                <svg class="lg:block hidden w-6 h-6 text-white/80 group-hover:text-yellow-400 transition duration-300" fill="none"
-                    viewBox="0 0 24 24">
+                :to="user ? '/user-panel' : '/check-mobile'">
+                <svg class="lg:block hidden w-6 h-6 text-white/80 group-hover:text-yellow-400 transition duration-300"
+                    fill="none" viewBox="0 0 24 24">
                     <path
                         d="M12 10C14.2091 10 16 8.20914 16 6C16 3.79086 14.2091 2 12 2C9.79086 2 8 3.79086 8 6C8 8.20914 9.79086 10 12 10Z"
                         stroke="currentColor" stroke-width="1.5" />
@@ -51,8 +51,9 @@
                         d="M20 17.5C20 19.985 20 22 12 22C4 22 4 19.985 4 17.5C4 15.015 7.582 13 12 13C16.418 13 20 15.015 20 17.5Z"
                         stroke="currentColor" stroke-width="1.5" />
                 </svg>
-                <span class="text-white/80 group-hover:text-yellow-400 lg:text-2xl text-[12px] transition  duration-300">
-                    {{ user ? (user.full_name ?? user.mobile) : 'ورود | عضویت' }}
+                <span
+                    class="text-white/80 group-hover:text-yellow-400 lg:text-2xl text-[12px] transition  duration-300">
+                    {{ user ? "مشاهده حساب کاربری" : 'ورود | عضویت' }}
                 </span>
                 <!-- Subtle glow effect on hover -->
                 <span
@@ -88,6 +89,9 @@ import { useProfile } from '@/stores/modules/profile';
 import { useMenu } from '@/stores/modules/menu.js';
 import { computed, onMounted, ref } from 'vue'
 import IconMenu from '@/common/icons/IconMenu.vue';
+import { useAuth } from "@/stores/modules/auth";
+const auth = useAuth();
+
 const store = useProfile();
 const store1 = useMenu();
 const menus = computed(() => store1.menus);
@@ -95,7 +99,8 @@ const settings = computed(() => store.getSettings);
 const user = computed(() => store.user);
 store1.getMenuFromServer()
 try {
-    store.fetchProfileInfo();
+    if (auth.hasToken)
+        store.fetchProfileInfo();
 } catch (error) {
     console.log(error);
 }
@@ -145,6 +150,18 @@ header #topBar {
         display: none;
     }
 }
+
+@media (max-width: 768px) {
+
+    header #topBar {
+        background-color: #0e1524;
+    }
+
+    #header {
+        background: #0e1524;
+    }
+}
+
 
 /* Subtle glow effect for the login button */
 #loginBtn:hover .glow {

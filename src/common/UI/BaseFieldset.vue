@@ -1,6 +1,6 @@
 <template>
-    <div :class="[ classes, disabled ? 'opacity-60 pointer-events-none' : '' ]">
-        <div v-if="legend" :class="label">{{ legend }}</div>
+    <div :class="[ classes, disabled ? 'opacity-60 pointer-events-none ' : '' ]" class="boxInput">
+        <div v-if="legend" :class="label" class="label">{{ legend }}</div>
         <div class="space-y-2">
             <slot></slot>
         </div>

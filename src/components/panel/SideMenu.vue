@@ -1,116 +1,46 @@
 <template>
     <ul>
-        <BaseAccordion :is-expand="true">
-            <template #header>
-                <div class="flex items-center gap-3">
-                    <IconPersonEdit />
-                    <span class="font-medium font-family-semi-bold text-md">مراحل اطلاعات شخصی</span>
-                </div>
-            </template>
-
-            <template #submenu>
-                <ul>
-                    <li class="py-2 flex flex-col gap-1">
-                        <RouterLink to="/panel/identity-info"
-                            active-class="relative text-blue-700 marker before:bg-blue-600">اطلاعات هویتی</RouterLink>
-                        <Badge :status="status(1)" />
-                    </li>
-                    <li class="py-2 flex flex-col gap-1">
-                        <RouterLink to="/panel/identity-docs"
-                            active-class="relative text-blue-700 marker before:bg-blue-600">مدارک هویتی</RouterLink>
-                        <Badge :status="status(2)" />
-                    </li>
-                    <li class="py-2 flex flex-col gap-1">
-                        <RouterLink to="/panel/physical-info"
-                            active-class="relative text-blue-700 marker before:bg-blue-600">مشخصات جسمانی</RouterLink>
-                        <Badge :status="status(3)" />
-                    </li>
-                    <li class="py-2 flex flex-col gap-1">
-                        <RouterLink to="/panel/education-docs"
-                            active-class="relative text-blue-700 marker before:bg-blue-600">مدارک تحصیلی</RouterLink>
-                        <Badge :status="status(4)" />
-                    </li>
-                </ul>
-            </template>
-        </BaseAccordion>
-        <BaseAccordion :is-expand="true">
-            <template #header>
-                <div class="flex items-center gap-3">
-                    <IconCourses />
-                    <span class="font-medium font-family-semi-bold text-md">دوره ها</span>
-                </div>
-            </template>
-
-            <template #submenu>
-                <ul>
-                    <li class="py-2">
-                        <RouterLink to="/panel/courses" active-class="relative text-blue-700 marker before:bg-blue-600">
-                            مشاهده دوره ها</RouterLink>
-                    </li>
-                    <li class="py-2">
-                        <RouterLink to="/panel/purchased"
-                            active-class="relative text-blue-700 marker before:bg-blue-600">دوره های خریداری شده
-                        </RouterLink>
-                    </li>
-                </ul>
-            </template>
-        </BaseAccordion>
-        <BaseAccordion :is-expand="true"> 
-            <template #header>
-                <div class="flex items-center gap-3">
-                    <IconWallet />
-                    <span class="font-medium font-family-semi-bold text-md">کیف پول</span>
-                </div>
-            </template>
-            <template #submenu>
-                <ul>
-                    <li class="py-2">
-                        <RouterLink to="/panel/wallet" active-class="relative text-blue-700 marker before:bg-blue-600">
-                            کیف پول</RouterLink>
-                    </li>
-                    
-                    <li class="py-2">
-                        <RouterLink to="/panel/receipts" active-class="relative text-blue-700 marker before:bg-blue-600">
-                            ثبت رسید</RouterLink>
-                    </li>
-                </ul>
-            </template>
-        </BaseAccordion>
-        <!-- <BaseAccordion>
-        <template #header>
-            <RouterLink to="/panel/membership" class="flex items-center gap-3" active-class="relative text-blue-700 marker before:bg-blue-600">
-                <IconPersonCard />
-                <span class="font-medium font-family-semi-bold text-md">کارت عضویت</span>
-            </RouterLink>
-        </template>
-    </BaseAccordion> -->
         <BaseAccordion>
             <template #header>
-                <RouterLink to="/panel/status" class="flex items-center gap-3"
+                <RouterLink to="/user-panel" class="flex items-center gap-3"
                     active-class="relative text-blue-700 marker before:bg-blue-600">
                     <IconPersonStatus />
-                    <span class="font-medium font-family-semi-bold text-md">وضعیت کاربر</span>
+                    <span class="font-medium text-white font-family-semi-bold text-md">پروفایل کاربر</span>
                 </RouterLink>
             </template>
         </BaseAccordion>
         <BaseAccordion>
             <template #header>
-                <RouterLink to="/panel/contact" class="flex items-center gap-3"
+                <RouterLink to="/user-panel/receipts" class="flex items-center gap-3"
                     active-class="relative text-blue-700 marker before:bg-blue-600">
-                    <IconMessage />
-                    <span class="font-medium font-family-semi-bold text-md">ارتباط با مدیر - بازرس</span>
+                    <IconWallet />
+
+                    <span class="font-medium text-white font-family-semi-bold text-md">رسید های واریزی</span>
                 </RouterLink>
             </template>
         </BaseAccordion>
+
         <BaseAccordion>
             <template #header>
-                <RouterLink to="/panel/referral" class="flex items-center gap-3"
+                <RouterLink to="/user-panel/requests" class="flex items-center gap-3"
                     active-class="relative text-blue-700 marker before:bg-blue-600">
-                    <IconPersonCard />
-                    <span class="font-medium font-family-semi-bold text-md">کدمعرف</span>
+                    <IconCar />
+                    <span class="font-medium text-white font-family-semi-bold text-md">درخواست های ثبت شده</span>
                 </RouterLink>
             </template>
         </BaseAccordion>
+
+        <BaseAccordion>
+            <template #header>
+                <RouterLink to="/check-mobile" class="flex items-center gap-3"
+                    active-class="relative text-blue-700 marker before:bg-blue-600">
+                    <IconLogout :color="'white'" />
+                    <span class="font-medium text-white font-family-semi-bold text-md">خروج از سیستم</span>
+                </RouterLink>
+            </template>
+        </BaseAccordion>
+
+
     </ul>
 </template>
 
@@ -125,6 +55,8 @@ import BaseAccordion from '@/common/UI/BaseAccordion.vue';
 import { computed, ref } from 'vue'
 import Badge from './Badge.vue';
 import { useProfile } from '@/stores/modules/profile';
+import IconCar from '@/common/icons/iconCar.vue';
+import IconLogout from '@/common/icons/IconLogout.vue';
 
 const store = useProfile();
 

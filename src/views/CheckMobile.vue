@@ -13,7 +13,10 @@
 import CheckMobile from '@/components/auth/CheckMobile.vue';
 import { useSlider } from '@/stores/modules/slider';
 import { onMounted, computed } from 'vue';
+import { useAuth } from "@/stores/modules/auth";
 import { useHead } from '@vueuse/head';
+const auth = useAuth();
+
 useHead({
     title: 'ثبت‌نام کاربر | تکین آراز پرگاس',
     meta: [
@@ -41,7 +44,9 @@ useHead({
 })
 const store = useSlider();
 onMounted(() => {
+    auth.logout();
     store.getSliderFromServer();
+
 })
 const sliders = computed(() => {
     return store.getSliders;

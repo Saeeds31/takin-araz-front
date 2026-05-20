@@ -6,24 +6,25 @@ import { toast } from "vue3-toastify";
 export const useAuth = defineStore("auth", {
   state: () => ({
     loading: false,
+    token: false,
     mobile: null,
   }),
 
   getters: {
     getLoading: (state) => state.loading,
     getMobile: (state) => state.mobile,
+    hasToken: (state) => state.token,
   },
 
   actions: {
     async check(mobile) {
       this.loading = true;
-      
+
       try {
         this.mobile = mobile;
         const { data } = await this.$axios.post("check-mobile", { mobile });
 
         return data;
-        
       } catch (error) {
         throw error;
       } finally {
@@ -45,7 +46,6 @@ export const useAuth = defineStore("auth", {
         const { data } = await this.$axios.post("send-otp", { mobile });
 
         return data;
-
       } catch (error) {
         throw error;
       } finally {
@@ -62,9 +62,8 @@ export const useAuth = defineStore("auth", {
 
         const { data } = await this.$axios.post("verify-otp", fd);
         Cookies.set("token", data.token);
-
+        this.token = true;
         return true;
-
       } catch (error) {
         throw error;
       } finally {
@@ -73,7 +72,9 @@ export const useAuth = defineStore("auth", {
     },
 
     logout() {
-      Cookies.remove('token');
-    }
+      this.token = false;
+      Cookies.remove("token");
+    },
+ 
   },
 });

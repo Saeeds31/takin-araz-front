@@ -31,17 +31,7 @@ export const useProfile = defineStore("profile", {
 
         const { data } = await this.$axios.get("user/profile");
         const { user, message } = data || null;
-
-        // toast.success(message || 'پروفایل کاربر');
-
         this.user = user || null;
-
-        const { identity_document, important_document, physical, register } = this.user;
-
-        this.identity = identity_document || null;
-        this.important = important_document || null;
-        this.physical = physical || null;
-        this.register = register || [];
       } catch (e) {
         console.log(e);
       } finally {
@@ -97,6 +87,23 @@ export const useProfile = defineStore("profile", {
       } finally {
         this.loading = false;
       }
+    },
+    async updateProfile(fd) {
+      const { data } = await this.$axios.post("user/profile/edit", fd);
+      if (data.success) {
+        this.user = data.data;
+      }
+      return result;
+    },
+
+    async updateProfileImage(imageFile) {
+      const formData = new FormData();
+      formData.append("image", imageFile);
+      const { data } = await this.$axios.post("user/upload-image", formData);
+      if (data.success) {
+        this.user = data.data;
+      }
+      return result;
     },
   },
 });

@@ -6,7 +6,7 @@ const routes = [
     component: () => import("@/views/Index.vue"),
     children: [
       {
-        path: "",
+        path: "/",
         name: "home",
         component: () => import("@/views/home.vue"),
       },
@@ -48,7 +48,6 @@ const routes = [
         name: "Contactus",
         component: () => import("@/views/Contactus.vue"),
       },
-      
     ],
   },
 
@@ -56,8 +55,23 @@ const routes = [
     path: "/user-panel",
     name: "Panel",
     component: () => import("@/views/Panel.vue"),
-    redirect: "/panel/identity-info",
-    children: [],
+    children: [
+      {
+        path: "",
+        name: "PanelInfo",
+        component: () => import("@/views/PanelInfo.vue"),
+      },
+      {
+        path: "receipts",
+        name: "Receipts",
+        component: () => import("@/views/Receipts.vue"),
+      },
+      {
+        path: "requests",
+        name: "requests",
+        component: () => import("@/views/Requests.vue"),
+      },
+    ],
   },
   {
     path: "/register",
@@ -83,7 +97,6 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes: routes,
-
 });
 
 export default router;
