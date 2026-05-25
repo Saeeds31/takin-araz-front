@@ -15,6 +15,7 @@ import "@/common/utils/locale.js";
 // Css
 import "@/assets/css/index.css";
 import "vue3-toastify/dist/index.css";
+import "vue-multiselect/dist/vue-multiselect.min.css"
 
 // Filters
 import { date, price, resource } from "@/common/filters";
