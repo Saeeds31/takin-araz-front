@@ -7,7 +7,8 @@
         :class="{ 'translate-x-full': expanded || false }">
         <SideMenu />
     </div>
-    <div class="bg-black w-full fixed flex items-center gap-1 justify-between px-3 py-3 bottom-0 right-0 md:hidden">
+    <div
+        class="bg-black w-full fixed flex items-center gap-1 justify-between px-3 py-3 z-[5000] bottom-0 right-0 md:hidden">
         <RouterLink to="/" class="flex items-center gap-3"
             active-class="relative text-blue-700 marker before:bg-blue-600">
             <IconHome :color="'white'" />
@@ -39,12 +40,9 @@ import IconPersonStatus from '@/common/icons/IconPersonStatus.vue';
 import SideMenu from './SideMenu.vue';
 import IconWallet from '@/common/icons/IconWallet.vue';
 import IconCar from '@/common/icons/iconCar.vue';
-import IconLogout from '@/common/icons/IconLogout.vue';
 import IconHome from '@/common/icons/iconHome.vue';
 
 defineProps(['expanded']);
 const emit = defineEmits(['expanded']);
 
 </script>
-
-<style scoped></style>

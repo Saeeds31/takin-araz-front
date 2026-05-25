@@ -13,7 +13,7 @@
             <template #header>
                 <RouterLink to="/user-panel/receipts" class="flex items-center gap-3"
                     active-class="relative text-blue-700 marker before:bg-blue-600">
-                    <IconWallet />
+                    <IconInvoice :color="'white'" />
 
                     <span class="font-medium text-white font-family-semi-bold text-md">رسید های واریزی</span>
                 </RouterLink>
@@ -29,7 +29,15 @@
                 </RouterLink>
             </template>
         </BaseAccordion>
-
+        <BaseAccordion>
+            <template #header>
+                <RouterLink to="/user-panel/wallet" class="flex items-center gap-3"
+                    active-class="relative text-blue-700 marker before:bg-blue-600">
+                    <IconWallet :color="'white'" />
+                    <span class="font-medium text-white font-family-semi-bold text-md">کیف پول</span>
+                </RouterLink>
+            </template>
+        </BaseAccordion>
         <BaseAccordion>
             <template #header>
                 <RouterLink to="/check-mobile" class="flex items-center gap-3"
@@ -45,18 +53,14 @@
 </template>
 
 <script setup>
-import IconCourses from '@/common/icons/IconCourses.vue';
-import IconMessage from '@/common/icons/IconMessage.vue';
-import IconPersonCard from '@/common/icons/IconPersonCard.vue';
-import IconPersonEdit from '@/common/icons/IconPersonEdit.vue';
 import IconPersonStatus from '@/common/icons/IconPersonStatus.vue';
 import IconWallet from '@/common/icons/IconWallet.vue';
 import BaseAccordion from '@/common/UI/BaseAccordion.vue';
 import { computed, ref } from 'vue'
-import Badge from './Badge.vue';
 import { useProfile } from '@/stores/modules/profile';
 import IconCar from '@/common/icons/iconCar.vue';
 import IconLogout from '@/common/icons/IconLogout.vue';
+import IconInvoice from '@/common/icons/IconInvoice.vue';
 
 const store = useProfile();
 

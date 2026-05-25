@@ -1,13 +1,16 @@
 <template>
     <div class="grid grid-col-1 md:grid-cols-2 gap-4">
-        <BaseCard class="relative custom-bg-01" variant="outlined">
+        <BaseCard class="relative bg-gray-900 text-white  custom-bg-01" variant="outlined">
             <div class="h-96 relative overflow-y-auto hide-scroll">
                 <div class="flex items-center justify-between mb-6">
                     <h6 class="text-lg ">کیف پول</h6>
-
-                    <!-- <BaseButton @click="show = true">شارژ حساب</BaseButton> -->
+                    <BaseButton>
+                        <router-link to="/user-panel/receipts">
+                            شارژ حساب
+                        </router-link>
+                    </BaseButton>
                 </div>
-    
+
                 <div class="flex items-center justify-center gap-2">
                     <span class="text-lg">موجودی</span>
                     <span class="font-bold text-4xl">{{ $filters.price(balance) }}</span>
@@ -15,18 +18,20 @@
                 </div>
             </div>
         </BaseCard>
-        <BaseCard class="relative custom-bg-02" variant="outlined">
+        <BaseCard class="relative bg-gray-900 text-white custom-bg-02" variant="outlined">
             <div class="h-96 relative overflow-y-auto hide-scroll">
                 <div class="flex items-center justify-between mb-6">
                     <h6 class="text-lg ">پرداختی و گزارش ها</h6>
                 </div>
-    
+
                 <div v-if="transactions?.length" v-for="(transaction, index) in transactions" :key="index">
-                    <div class="border-neutral-100 pb-1 mt-2" :class="{ 'border-b': index !== transactions.length - 1 }">
-                        <p class="mb-1 text-md font-family-regular text-indigo-400">{{ transaction?.description }}</p>
-                        <div class="flex items-center justify-between">
-                            <p class="text-xl">{{ $filters.price(transaction?.amount) }} <span class="text-xs ms-1">تومان</span></p>
-                            <span class="text-md font-family-semi-bold text-emerald-500">نامشخص</span>
+                    <div class="border-neutral-100 pb-1 mt-2"
+                        :class="{ 'border-b': index !== transactions.length - 1 }">
+                        <div class="border-2 p-2 mt-2 rounded flex items-center justify-between">
+                            <p class="mb-1 text-md font-family-regular text-white-400">{{ transaction?.description }}
+                            </p>
+                            <p class="text-xl">{{ $filters.price(transaction?.amount) }} <span
+                                    class="text-xs ms-1">تومان</span></p>
                         </div>
                     </div>
                 </div>
@@ -112,6 +117,7 @@ onMounted(async () => {
     background-size: 210px 200px;
     opacity: 0.6;
 }
+
 .custom-bg-02::before {
     content: "";
     position: absolute;

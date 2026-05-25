@@ -25,9 +25,6 @@ export const useWallet = defineStore("wallet", {
 
             this.transactions = transactions;
             this.wallet = wallet;
-
-            toast.success(message);
-            
         } catch (e) {
             console.log(e);
         } finally {

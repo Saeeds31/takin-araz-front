@@ -90,7 +90,7 @@
                                     <div>
                                         <p class="text-xs text-gray-400">قیمت</p>
                                         <p class="text-white font-semibold">
-                                            {{ Number(request.price).toLocaleString('fa') }} تومان
+                                            {{ Number(request.price).toLocaleString('fa') }} دلار
                                         </p>
                                     </div>
                                 </div>
@@ -150,8 +150,14 @@
                             <!-- دکمه‌های اقدام -->
                             <div class="flex flex-wrap gap-3 pt-4 border-t border-white/10">
                                 <button @click="uploadReceipt(request)"
-                                    class="px-4 py-2 bg-gradient-to-r from-primary-dark to-pink-950 text-white rounded-xl hover:from-purple-600 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-xl">
+                                    class="px-4 py-2 bg-white text-shadow-primary-darker rounded-xl  transition-all duration-300 shadow-lg hover:shadow-xl">
                                     ثبت فیش واریزی
+                                </button>
+                                <button @click="getInvoice(request)"
+                                    class="px-4 py-2 bg-amber-300 text-black-400 border border-amber-500/50 rounded-xl  transition-all duration-300 shadow-lg hover:shadow-xl">
+                                    <router-link :to="`/user-panel/invoice/${request.id}`">
+                                        دریافت فاکتور
+                                    </router-link>
                                 </button>
                             </div>
                         </div>

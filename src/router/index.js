@@ -67,10 +67,21 @@ const routes = [
         component: () => import("@/views/Receipts.vue"),
       },
       {
+        path: "wallet",
+        name: "Wallet",
+        component: () => import("@/views/Wallet.vue"),
+      },
+      {
         path: "requests",
         name: "requests",
         component: () => import("@/views/Requests.vue"),
       },
+      {
+        path: "invoice/:id",
+        name: "invoices",
+        component: () => import("@/views/invoices.vue"),
+      },
+      
     ],
   },
   {

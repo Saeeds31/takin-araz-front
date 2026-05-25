@@ -27,7 +27,7 @@
                 خودروی درخواست شده:
             </h6>
             <div v-if="requests.length" class="relative">
-                <input disabled :value="requests.find(r => r.id = route.query.request_id)?.car?.name" type="tel"
+                <input disabled :value="requests.find(r => r.id = route.query.request_id)?.name" type="tel"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
                     dir="rtl" />
             </div>
