@@ -85,27 +85,28 @@
   <nav class="md:hidden block">
     <div
       class="bg-black w-full fixed z-[6000] flex items-center gap-1 justify-between px-3 py-3 bottom-0 right-0 md:hidden">
-      <RouterLink to="/" class="flex items-center gap-3"
+      <RouterLink to="/" :class="{ 'activeLink': route.path == '/' }" class="flex items-center gap-3"
         active-class="relative text-blue-700 marker before:bg-blue-600">
         <IconHome :color="'white'" />
-        <span class="font-medium text-white font-family-semi-bold text-md">خانه</span>
+        <span class="font-medium text-white font-family-semi-bold text-md hidden">خانه</span>
       </RouterLink>
-      <RouterLink :to="auth.hasToken? '/user-panel' : '/check-mobile'" class="flex items-center gap-3"
+      <RouterLink :class="{ 'activeLink': route.path == '/user-panel' || route.path == '/check-mobile' }"
+        :to="'/user-panel'" class="flex items-center gap-3"
         active-class="relative text-blue-700 marker before:bg-blue-600">
         <IconPersonStatus />
-        <span class="font-medium text-white font-family-semi-bold text-md">پروفایل </span>
+        <span class="font-medium text-white font-family-semi-bold text-md hidden">پروفایل </span>
       </RouterLink>
-      <RouterLink to="/cars" class="flex items-center gap-3"
+      <RouterLink :class="{ 'activeLink': route.path == '/cars' }" to="/cars" class="flex items-center gap-3"
         active-class="relative text-blue-700 marker before:bg-blue-600">
         <IconCar />
 
-        <span class="font-medium text-white font-family-semi-bold text-md">خودرو ها</span>
+        <span class="font-medium text-white font-family-semi-bold text-md hidden">خودرو ها</span>
       </RouterLink>
 
-      <RouterLink to="/contact-us" class="flex items-center gap-3"
-        active-class="relative text-blue-700 marker before:bg-blue-600">
+      <RouterLink to="/contact-us" :class="{ 'activeLink': route.path == '/contact-us' }"
+        class="flex items-center gap-3" active-class="relative text-blue-700 marker before:bg-blue-600">
         <IconPhone />
-        <span class="font-medium text-white font-family-semi-bold text-md">تماس با ما</span>
+        <span class="font-medium text-white font-family-semi-bold text-md hidden">تماس با ما</span>
       </RouterLink>
 
     </div>
@@ -124,6 +125,8 @@ import IconPersonStatus from "@/common/icons/IconPersonStatus.vue";
 import IconCar from "@/common/icons/iconCar.vue";
 import IconPhone from "@/common/icons/IconPhone.vue";
 import { useAuth } from "@/stores/modules/auth";
+import { useRoute } from "vue-router";
+const route = useRoute()
 const auth = useAuth();
 const store1 = useProfile()
 const settings = computed(() => store1.getSettings);
@@ -134,4 +137,15 @@ const menus = computed(() => store.menus);
 const gregorian = computed(() => new Date().getFullYear());
 </script>
 
-<style scoped></style>
+<style scoped>
+.activeLink {
+  border-bottom: 2px solid #a9f72c;
+  border-radius: 8px;
+  padding: 0 8px;
+  padding-bottom: 4px;
+}
+
+.activeLink span {
+  display: block !important;
+}
+</style>

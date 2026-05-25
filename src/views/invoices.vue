@@ -158,13 +158,15 @@
 
 <script setup>
 import { useRequest } from '@/stores/modules/requests';
-import { computed, onMounted, ref, watch } from 'vue'
-import { useRoute } from "vue-router"
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { useRoute, useRouter } from "vue-router"
 import { useErrors } from '@/composables/useError';
 const { displayError } = useErrors();
 
 const store = useRequest();
 const route = useRoute();
+const router = useRouter();
+
 let loading = ref(true);
 let request = computed(() => {
   return store.getRequest
@@ -183,6 +185,10 @@ const init = async () => {
   try {
     loading.value = true;
     await store.loadItem(route.params.id);
+    loading.value = false;
+    nextTick(() => {
+      checkMobileVersion()
+    })
   } catch (err) {
     displayError(err);
   } finally {
@@ -206,6 +212,12 @@ onMounted(async () => {
 });
 function printInvoice() {
   window.print();
+}
+function checkMobileVersion() {
+  if (window.innerWidth < 768) {
+    window.print();
+    router.push("/user-panel/requests")
+  }
 }
 </script>
 <style scoped>

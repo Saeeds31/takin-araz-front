@@ -153,7 +153,7 @@
                                     class="px-4 py-2 bg-white text-shadow-primary-darker rounded-xl  transition-all duration-300 shadow-lg hover:shadow-xl">
                                     ثبت فیش واریزی
                                 </button>
-                                <button @click="getInvoice(request)"
+                                <button 
                                     class="px-4 py-2 bg-amber-300 text-black-400 border border-amber-500/50 rounded-xl  transition-all duration-300 shadow-lg hover:shadow-xl">
                                     <router-link :to="`/user-panel/invoice/${request.id}`">
                                         دریافت فاکتور

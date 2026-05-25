@@ -114,7 +114,6 @@ const { value, errorMessage, meta } = useField(() => props.name);
 </script>
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
-<style scoped></style>
 <style>
 .form-control {
     color: white;

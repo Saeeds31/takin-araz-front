@@ -31,6 +31,7 @@ export const useRequest = defineStore("request", {
       try {
         const { data } = await this.$axios.get("car-request/" + id);
         this.request = data.request || [];
+        return true;
       } catch (error) {
         throw error;
       } finally {

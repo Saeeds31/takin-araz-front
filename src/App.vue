@@ -13,6 +13,9 @@ import IconWhatsapp from '@/common/icons/IconWhatsapp.vue';
 import { useProfile } from '@/stores/modules/profile';
 import { useBanner } from '@/stores/modules/banner';
 import { computed, onMounted } from 'vue';
+import axios from 'axios';
+import { useRouter } from 'vue-router';
+const router = useRouter()
 const store = useProfile();
 const store1 = useBanner();
 let banners = computed(() => {
@@ -23,4 +26,15 @@ onMounted(() => {
     if (!banners.value.length)
         store1.getBannersFromServer();
 })
+axios.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        console.log(error.response);
+        
+        if (error.response && error.response.status === 401) {
+            router.push("/check-mobile"); // برو به صفحه لاگین
+        }
+        return Promise.reject(error);
+    }
+);
 </script>

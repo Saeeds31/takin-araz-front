@@ -35,14 +35,10 @@ instance.interceptors.response.use(
   },
   (error) => {
     if (error.response && error.response.status === UN_AUTHORIZED) {
-      router.push({ name: "Check" });
+      router.push("/check-mobile");
       toast.error("توکن منقضی شده است");
     }
-    if (
-      error.response &&
-      error.response.status >= 500 &&
-      error.response.status < 600
-    ) {
+    if (error.response && error.response.status >= 500 && error.response.status < 600) {
       toast.error("خطای سرور");
     }
 

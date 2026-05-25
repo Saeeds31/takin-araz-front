@@ -35,7 +35,7 @@ export const useAuth = defineStore("auth", {
     async resend() {
       try {
         if (!this.mobile) {
-          await router.push({ name: "Check" });
+          await router.push("/check-mobile");
           toast.error("شماره موبایل یافت نشد، مجددا تلاش کنید");
           return;
         }
